@@ -1,0 +1,82 @@
+{
+  "os":  "Linux-5.14.0-362.18.1.el9_3.x86_64-x86_64-with-glibc2.34",
+  "python":  "CPython 3.9.18",
+  "startedAt":  "2025-03-20T14:45:13.616093Z",
+  "program":  "/u/dssc/scandu00/rebus-grpo/tutorial.py",
+  "git":  {
+    "remote":  "git@github.com:gaoithee/rebus-grpo.git",
+    "commit":  "f4b48a3b869e6cb88010d510fa6a91a37de7e3bf"
+  },
+  "email":  "sara.candussio@phd.units.it",
+  "root":  "/orfeo/cephfs/home/dssc/scandu00/rebus-grpo",
+  "host":  "gpu002.hpc.rd.areasciencepark.it",
+  "executable":  "/orfeo/cephfs/home/dssc/scandu00/.venv/bin/python3",
+  "cpu_count":  24,
+  "cpu_count_logical":  48,
+  "gpu":  "Tesla V100-PCIE-32GB",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "127422574592",
+      "used":  "12275699712"
+    }
+  },
+  "memory":  {
+    "total":  "269508943872"
+  },
+  "cpu":  {
+    "count":  24,
+    "countLogical":  48
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "Tesla V100-PCIE-32GB",
+      "memoryTotal":  "34359738368",
+      "cudaCores":  5120,
+      "architecture":  "Volta"
+    }
+  ],
+  "slurm":  {
+    "cluster_name":  "orfeo",
+    "conf":  "/var/spool/slurm/d/conf-cache/slurm.conf",
+    "cpus_on_node":  "2",
+    "cpus_per_task":  "1",
+    "get_user_env":  "1",
+    "gpus":  "1",
+    "gpus_on_node":  "1",
+    "gtids":  "0",
+    "job_account":  "dssc",
+    "job_cpus_per_node":  "2",
+    "job_end_time":  "1742496292",
+    "job_gid":  "10080159",
+    "job_gpus":  "0",
+    "job_id":  "1059406",
+    "job_name":  "grpo",
+    "job_nodelist":  "gpu002",
+    "job_num_nodes":  "1",
+    "job_partition":  "GPU",
+    "job_qos":  "normal",
+    "job_start_time":  "1742481892",
+    "job_uid":  "10080159",
+    "job_user":  "scandu00",
+    "jobid":  "1059406",
+    "localid":  "0",
+    "mem_per_node":  "81920",
+    "nnodes":  "1",
+    "nodeid":  "0",
+    "nodelist":  "gpu002",
+    "nprocs":  "1",
+    "ntasks":  "1",
+    "ntasks_per_node":  "1",
+    "prio_process":  "0",
+    "procid":  "0",
+    "submit_dir":  "/orfeo/cephfs/home/dssc/scandu00/rebus-grpo",
+    "submit_host":  "login02.hpc.rd.areasciencepark.it",
+    "task_pid":  "800948",
+    "tasks_per_node":  "1",
+    "topology_addr":  "gpu002",
+    "topology_addr_pattern":  "node",
+    "tres_per_task":  "cpu=1"
+  },
+  "cudaVersion":  "12.3"
+}

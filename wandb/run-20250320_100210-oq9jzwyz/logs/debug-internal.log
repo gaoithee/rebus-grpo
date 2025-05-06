@@ -1,0 +1,15 @@
+{"time":"2025-03-20T10:02:10.490063949+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/orfeo/cephfs/home/dssc/scandu00/rebus-grpo/wandb/run-20250320_100210-oq9jzwyz/logs/debug-core.log"}
+{"time":"2025-03-20T10:02:10.614915074+01:00","level":"INFO","msg":"created new stream","id":"oq9jzwyz"}
+{"time":"2025-03-20T10:02:10.614946106+01:00","level":"INFO","msg":"stream: started","id":"oq9jzwyz"}
+{"time":"2025-03-20T10:02:10.614959697+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"oq9jzwyz"}
+{"time":"2025-03-20T10:02:10.615138942+01:00","level":"INFO","msg":"handler: started","stream_id":"oq9jzwyz"}
+{"time":"2025-03-20T10:02:10.61516333+01:00","level":"INFO","msg":"sender: started","stream_id":"oq9jzwyz"}
+{"time":"2025-03-20T10:02:10.968231595+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-20T11:04:58.636757858+01:00","level":"INFO","msg":"stream: closing","id":"oq9jzwyz"}
+{"time":"2025-03-20T11:04:58.6368054+01:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-20T11:04:58.637815319+01:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-20T11:04:59.582340523+01:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-20T11:04:59.817434289+01:00","level":"INFO","msg":"handler: closed","stream_id":"oq9jzwyz"}
+{"time":"2025-03-20T11:04:59.817450851+01:00","level":"INFO","msg":"writer: Close: closed","stream_id":"oq9jzwyz"}
+{"time":"2025-03-20T11:04:59.817492528+01:00","level":"INFO","msg":"sender: closed","stream_id":"oq9jzwyz"}
+{"time":"2025-03-20T11:04:59.818055266+01:00","level":"INFO","msg":"stream: closed","id":"oq9jzwyz"}

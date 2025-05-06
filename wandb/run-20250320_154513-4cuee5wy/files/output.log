@@ -1,0 +1,127 @@
+wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
+100%|██████████| 25/25 [07:04<00:00, 16.98s/it]
+{'loss': 0.0, 'grad_norm': 0.2817498743534088, 'learning_rate': 1.9200000000000003e-05, 'completion_length': 85.703125, 'rewards/reward_function': -277.390625, 'reward': -277.390625, 'reward_std': 80.39103317260742, 'kl': 0.0, 'epoch': 0.04}
+{'loss': 0.0001, 'grad_norm': 0.25761550664901733, 'learning_rate': 1.8400000000000003e-05, 'completion_length': 90.296875, 'rewards/reward_function': -291.0625, 'reward': -291.0625, 'reward_std': 61.66051483154297, 'kl': 0.001705998438410461, 'epoch': 0.08}
+{'loss': 0.0001, 'grad_norm': 0.28046104311943054, 'learning_rate': 1.76e-05, 'completion_length': 84.375, 'rewards/reward_function': -288.921875, 'reward': -288.921875, 'reward_std': 79.7220458984375, 'kl': 0.0016581430099904537, 'epoch': 0.12}
+{'loss': 0.0001, 'grad_norm': 0.3476819097995758, 'learning_rate': 1.6800000000000002e-05, 'completion_length': 84.15625, 'rewards/reward_function': -269.84375, 'reward': -269.84375, 'reward_std': 83.51634979248047, 'kl': 0.0016194067429751158, 'epoch': 0.16}
+{'loss': 0.0001, 'grad_norm': 0.3236464560031891, 'learning_rate': 1.6000000000000003e-05, 'completion_length': 86.859375, 'rewards/reward_function': -292.828125, 'reward': -292.828125, 'reward_std': 79.45022964477539, 'kl': 0.0019187108846381307, 'epoch': 0.2}
+{'loss': 0.0001, 'grad_norm': 0.2445654720067978, 'learning_rate': 1.5200000000000002e-05, 'completion_length': 91.390625, 'rewards/reward_function': -297.1875, 'reward': -297.1875, 'reward_std': 57.15816879272461, 'kl': 0.0018690996803343296, 'epoch': 0.24}
+{'loss': 0.0001, 'grad_norm': 0.26662924885749817, 'learning_rate': 1.4400000000000001e-05, 'completion_length': 85.4375, 'rewards/reward_function': -282.0, 'reward': -282.0, 'reward_std': 59.429439544677734, 'kl': 0.0015749172307550907, 'epoch': 0.28}
+{'loss': 0.0001, 'grad_norm': 0.24798104166984558, 'learning_rate': 1.3600000000000002e-05, 'completion_length': 87.0, 'rewards/reward_function': -278.234375, 'reward': -278.234375, 'reward_std': 69.43829536437988, 'kl': 0.0015598501777276397, 'epoch': 0.32}
+{'loss': 0.0001, 'grad_norm': 0.3320423662662506, 'learning_rate': 1.2800000000000001e-05, 'completion_length': 81.21875, 'rewards/reward_function': -262.265625, 'reward': -262.265625, 'reward_std': 82.544921875, 'kl': 0.0017479895032010972, 'epoch': 0.36}
+{'loss': 0.0001, 'grad_norm': 0.3880842626094818, 'learning_rate': 1.2e-05, 'completion_length': 78.765625, 'rewards/reward_function': -249.109375, 'reward': -249.109375, 'reward_std': 90.68754577636719, 'kl': 0.0016446411609649658, 'epoch': 0.4}
+{'loss': 0.0001, 'grad_norm': 0.22928990423679352, 'learning_rate': 1.1200000000000001e-05, 'completion_length': 87.71875, 'rewards/reward_function': -288.671875, 'reward': -288.671875, 'reward_std': 65.60392761230469, 'kl': 0.001612014602869749, 'epoch': 0.44}
+{'loss': 0.0001, 'grad_norm': 0.2517886757850647, 'learning_rate': 1.04e-05, 'completion_length': 83.171875, 'rewards/reward_function': -280.703125, 'reward': -280.703125, 'reward_std': 80.16182518005371, 'kl': 0.0014848353457637131, 'epoch': 0.48}
+{'loss': 0.0001, 'grad_norm': 0.31820008158683777, 'learning_rate': 9.600000000000001e-06, 'completion_length': 81.171875, 'rewards/reward_function': -274.1875, 'reward': -274.1875, 'reward_std': 87.38411331176758, 'kl': 0.0016567527782171965, 'epoch': 0.52}
+{'loss': 0.0001, 'grad_norm': 0.2716348469257355, 'learning_rate': 8.8e-06, 'completion_length': 85.25, 'rewards/reward_function': -290.125, 'reward': -290.125, 'reward_std': 69.39002990722656, 'kl': 0.0015466089826077223, 'epoch': 0.56}
+{'loss': 0.0001, 'grad_norm': 0.34317880868911743, 'learning_rate': 8.000000000000001e-06, 'completion_length': 84.671875, 'rewards/reward_function': -280.125, 'reward': -280.125, 'reward_std': 77.49023056030273, 'kl': 0.0017814287566579878, 'epoch': 0.6}
+{'loss': 0.0001, 'grad_norm': 0.27762526273727417, 'learning_rate': 7.2000000000000005e-06, 'completion_length': 81.984375, 'rewards/reward_function': -272.453125, 'reward': -272.453125, 'reward_std': 83.10333251953125, 'kl': 0.0017459558439441025, 'epoch': 0.64}
+{'loss': 0.0001, 'grad_norm': 0.22603124380111694, 'learning_rate': 6.4000000000000006e-06, 'completion_length': 88.078125, 'rewards/reward_function': -283.875, 'reward': -283.875, 'reward_std': 67.93558883666992, 'kl': 0.0016422262415289879, 'epoch': 0.68}
+{'loss': 0.0001, 'grad_norm': 0.260944664478302, 'learning_rate': 5.600000000000001e-06, 'completion_length': 90.65625, 'rewards/reward_function': -295.578125, 'reward': -295.578125, 'reward_std': 55.79398727416992, 'kl': 0.001709097356069833, 'epoch': 0.72}
+{'loss': 0.0001, 'grad_norm': 0.2515529692173004, 'learning_rate': 4.800000000000001e-06, 'completion_length': 89.0, 'rewards/reward_function': -291.375, 'reward': -291.375, 'reward_std': 75.15644836425781, 'kl': 0.0019520262721925974, 'epoch': 0.76}
+{'loss': 0.0001, 'grad_norm': 0.2791872024536133, 'learning_rate': 4.000000000000001e-06, 'completion_length': 84.765625, 'rewards/reward_function': -286.734375, 'reward': -286.734375, 'reward_std': 74.98202896118164, 'kl': 0.0019260592525824904, 'epoch': 0.8}
+{'loss': 0.0001, 'grad_norm': 0.32367005944252014, 'learning_rate': 3.2000000000000003e-06, 'completion_length': 84.78125, 'rewards/reward_function': -272.875, 'reward': -272.875, 'reward_std': 72.15599060058594, 'kl': 0.0021384533029049635, 'epoch': 0.84}
+{'loss': 0.0001, 'grad_norm': 0.2716864049434662, 'learning_rate': 2.4000000000000003e-06, 'completion_length': 88.53125, 'rewards/reward_function': -285.203125, 'reward': -285.203125, 'reward_std': 64.65923309326172, 'kl': 0.0017698926385492086, 'epoch': 0.88}
+{'loss': 0.0001, 'grad_norm': 0.3134874999523163, 'learning_rate': 1.6000000000000001e-06, 'completion_length': 86.53125, 'rewards/reward_function': -272.59375, 'reward': -272.59375, 'reward_std': 78.01583862304688, 'kl': 0.001816155097912997, 'epoch': 0.92}
+{'loss': 0.0001, 'grad_norm': 0.2680288255214691, 'learning_rate': 8.000000000000001e-07, 'completion_length': 88.0, 'rewards/reward_function': -296.40625, 'reward': -296.40625, 'reward_std': 76.69314956665039, 'kl': 0.00180356070632115, 'epoch': 0.96}
+{'loss': 0.0001, 'grad_norm': 0.22701390087604523, 'learning_rate': 0.0, 'completion_length': 87.09375, 'rewards/reward_function': -283.5, 'reward': -283.5, 'reward_std': 61.90085220336914, 'kl': 0.0016660051769576967, 'epoch': 1.0}
+{'train_runtime': 424.6232, 'train_samples_per_second': 0.471, 'train_steps_per_second': 0.059, 'train_loss': 6.647774018347263e-05, 'epoch': 1.0}
+model.safetensors: 100%|██████████| 269M/269M [00:13<00:00, 20.5MB/s] 
+Traceback (most recent call last):
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_http.py", line 409, in hf_raise_for_status
+    response.raise_for_status()
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://huggingface.co/SmolGRPO-135M/resolve/main/config.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 403, in cached_file
+    resolved_file = hf_hub_download(
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 969, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1486, in _raise_on_head_call_error
+    raise head_call_error
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1376, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1296, in get_hf_file_metadata
+    r = _request_wrapper(
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 280, in _request_wrapper
+    response = _request_wrapper(
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 304, in _request_wrapper
+    hf_raise_for_status(response)
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_http.py", line 458, in hf_raise_for_status
+    raise _format(RepositoryNotFoundError, message, response) from e
+huggingface_hub.errors.RepositoryNotFoundError: 404 Client Error. (Request ID: Root=1-67dc2bb5-158140e90416052d584abc30;e99b6cdf-5477-4675-88ca-fd251e85e54e)
+
+Repository Not Found for url: https://huggingface.co/SmolGRPO-135M/resolve/main/config.json.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/u/dssc/scandu00/rebus-grpo/tutorial.py", line 97, in <module>
+    generator = pipeline("text-generation", model="SmolGRPO-135M")
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/transformers/pipelines/__init__.py", line 812, in pipeline
+    resolved_config_file = cached_file(
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 426, in cached_file
+    raise EnvironmentError(
+OSError: SmolGRPO-135M is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
+Traceback (most recent call last):
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_http.py", line 409, in hf_raise_for_status
+    response.raise_for_status()
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://huggingface.co/SmolGRPO-135M/resolve/main/config.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 403, in cached_file
+    resolved_file = hf_hub_download(
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 969, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1486, in _raise_on_head_call_error
+    raise head_call_error
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1376, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1296, in get_hf_file_metadata
+    r = _request_wrapper(
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 280, in _request_wrapper
+    response = _request_wrapper(
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 304, in _request_wrapper
+    hf_raise_for_status(response)
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/huggingface_hub/utils/_http.py", line 458, in hf_raise_for_status
+    raise _format(RepositoryNotFoundError, message, response) from e
+huggingface_hub.errors.RepositoryNotFoundError: 404 Client Error. (Request ID: Root=1-67dc2bb5-158140e90416052d584abc30;e99b6cdf-5477-4675-88ca-fd251e85e54e)
+
+Repository Not Found for url: https://huggingface.co/SmolGRPO-135M/resolve/main/config.json.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/u/dssc/scandu00/rebus-grpo/tutorial.py", line 97, in <module>
+    generator = pipeline("text-generation", model="SmolGRPO-135M")
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/transformers/pipelines/__init__.py", line 812, in pipeline
+    resolved_config_file = cached_file(
+  File "/orfeo/cephfs/home/dssc/scandu00/.venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 426, in cached_file
+    raise EnvironmentError(
+OSError: SmolGRPO-135M is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
