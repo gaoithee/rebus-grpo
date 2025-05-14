@@ -1,0 +1,103 @@
+{
+  "os": "Linux-5.14.0-503.38.1.el9_5.x86_64-x86_64-with-glibc2.34",
+  "python": "CPython 3.9.21",
+  "startedAt": "2025-05-09T10:50:46.107969Z",
+  "program": "rebus-grpo/other/tutorial.ipynb",
+  "git": {
+    "remote": "git@github.com:gaoithee/rebus-grpo.git",
+    "commit": "b342f7160f23499b8f962f76e791a0cf118a571b"
+  },
+  "email": "sara.candussio@phd.units.it",
+  "root": "/orfeo/cephfs/home/dssc/scandu00/rebus-grpo/other",
+  "host": "gpu001.hpc.rd.areasciencepark.it",
+  "executable": "/usr/bin/python3",
+  "cpu_count": 24,
+  "cpu_count_logical": 48,
+  "gpu": "Tesla V100-PCIE-32GB",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "127422574592",
+      "used": "17216331776"
+    }
+  },
+  "memory": {
+    "total": "269519794176"
+  },
+  "cpu": {
+    "count": 24,
+    "countLogical": 48
+  },
+  "gpu_nvidia": [
+    {
+      "name": "Tesla V100-PCIE-32GB",
+      "memoryTotal": "34359738368",
+      "cudaCores": 5120,
+      "architecture": "Volta"
+    }
+  ],
+  "slurm": {
+    "cluster_name": "orfeo",
+    "conf": "/var/spool/slurm/d/conf-cache/slurm.conf",
+    "cpu_bind": "quiet,mask_cpu:0x000000000002,0x000002000000,0x000000000008,0x000008000000",
+    "cpu_bind_list": "0x000000000002,0x000002000000,0x000000000008,0x000008000000",
+    "cpu_bind_type": "mask_cpu:",
+    "cpu_bind_verbose": "quiet",
+    "cpus_on_node": "4",
+    "distribution": "block",
+    "gpus": "1",
+    "gpus_on_node": "1",
+    "gtids": "0,1,2,3",
+    "job_account": "dssc",
+    "job_cpus_per_node": "4",
+    "job_end_time": "1746795393",
+    "job_gid": "10080159",
+    "job_group": "scandu00",
+    "job_id": "32264",
+    "job_name": "bash",
+    "job_nodelist": "gpu001",
+    "job_num_nodes": "1",
+    "job_partition": "GPU",
+    "job_qos": "normal",
+    "job_start_time": "1746780993",
+    "job_uid": "10080159",
+    "job_user": "scandu00",
+    "jobid": "32264",
+    "launch_node_ipaddr": "10.128.2.80",
+    "localid": "0",
+    "mem_per_node": "10240",
+    "mpi_type": "pmix",
+    "nnodes": "1",
+    "nodeid": "0",
+    "nodelist": "gpu001",
+    "nprocs": "4",
+    "ntasks": "4",
+    "ntasks_per_node": "4",
+    "oom_kill_step": "0",
+    "pmix_mapping_serv": "(vector,(0,1,4))",
+    "pmixp_abort_agent_port": "46443",
+    "prio_process": "0",
+    "procid": "0",
+    "pty_port": "42315",
+    "pty_win_col": "108",
+    "pty_win_row": "20",
+    "srun_comm_host": "10.128.2.80",
+    "srun_comm_port": "45035",
+    "step_gpus": "1",
+    "step_id": "0",
+    "step_launcher_port": "45035",
+    "step_nodelist": "gpu001",
+    "step_num_nodes": "1",
+    "step_num_tasks": "4",
+    "step_tasks_per_node": "4",
+    "stepid": "0",
+    "submit_dir": "/orfeo/cephfs/home/dssc/scandu00",
+    "submit_host": "login01.hpc.rd.areasciencepark.it",
+    "task_pid": "3944036",
+    "tasks_per_node": "4",
+    "topology_addr": "gpu001",
+    "topology_addr_pattern": "node",
+    "umask": "0022"
+  },
+  "cudaVersion": "12.8"
+}
