@@ -87,7 +87,8 @@ def perc_correct_words_solution(prompts, completions, answer, **kwargs):
             elif len(pw) == len(gw):
                 score += 0.5
 
-        scores.append(score / len(gold))
+        scores.append(score / len(gold)) 
+        # e se non li normalizzassi?
 
     return scores
 
