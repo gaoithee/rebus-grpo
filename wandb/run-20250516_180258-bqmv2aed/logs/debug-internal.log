@@ -1,0 +1,7 @@
+{"time":"2025-05-16T18:02:58.699267596+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/u/scandussio/rebus-grpo/wandb/run-20250516_180258-bqmv2aed/logs/debug-core.log"}
+{"time":"2025-05-16T18:02:58.972877309+02:00","level":"INFO","msg":"created new stream","id":"bqmv2aed"}
+{"time":"2025-05-16T18:02:58.972904059+02:00","level":"INFO","msg":"stream: started","id":"bqmv2aed"}
+{"time":"2025-05-16T18:02:58.972943684+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"bqmv2aed"}
+{"time":"2025-05-16T18:02:58.972961097+02:00","level":"INFO","msg":"sender: started","stream_id":"bqmv2aed"}
+{"time":"2025-05-16T18:02:58.972992355+02:00","level":"INFO","msg":"handler: started","stream_id":"bqmv2aed"}
+{"time":"2025-05-16T18:02:59.297216391+02:00","level":"INFO","msg":"Starting system monitor"}

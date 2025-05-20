@@ -1,7 +1,9 @@
+import numpy as np
 from unsloth import FastLanguageModel
 from datasets import load_dataset
 from trl import GRPOConfig, GRPOTrainer
 from tqdm import tqdm
+from reward_funcs import exact_match_solution, perc_correct_words_solution, words_letters_match_primalet, perc_correct_words_defres
 import wandb
 wandb.login(key="5a69225ea1d050c9c21f67c2db85febf61fa8fb1")
 
@@ -36,6 +38,7 @@ eval_dataset = load_dataset('saracandu/eureka-rebus-grpo', data_files = ['train.
 
 
 training_args = GRPOConfig(
+    output_dir = "GRPO-llama",
     learning_rate=5e-6, # può essere sensato tenerlo piccolo perché è già stato fine-tuned
     adam_beta1=0.9,
     adam_beta2=0.99,
@@ -43,18 +46,26 @@ training_args = GRPOConfig(
     warmup_ratio=0.1,
     lr_scheduler_type="cosine",
     optim="paged_adamw_8bit", # risparmia in memoria & aumenta la velocità
-    logging_steps=1,
-    per_device_train_batch_size=1,
-    gradient_accumulation_steps=1,  # Increase to 4 for smoother training
+    logging_steps=50,
+    per_device_train_batch_size=4,
+    gradient_accumulation_steps=8,  # Increase to 4 for smoother training
     num_generations=6,  # Decrease if out of memory
     max_prompt_length=256,
     max_completion_length=500,
-    num_train_epochs = 1, # Set to 1 for a full training run
-    max_steps=20,
-    save_steps=20,
+    num_train_epochs = 3, # Set to 1 for a full training run
+    save_steps=1000,
     max_grad_norm=0.1,
     report_to = ["wandb"],
-    output_dir="outputs",
+)
+
+
+
+trainer = GRPOTrainer(
+    model=model,
+    processing_class=tokenizer,
+    reward_funcs=[exact_match_solution, perc_correct_words_solution, words_letters_match_primalet, perc_correct_words_defres],
+    args=training_args,
+    train_dataset=eval_dataset,
 )
 
 

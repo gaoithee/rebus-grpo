@@ -1,0 +1,15 @@
+{"time":"2025-05-20T10:51:31.252279908+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/u/scandussio/rebus-grpo/wandb/run-20250520_105131-ec3fvzib/logs/debug-core.log"}
+{"time":"2025-05-20T10:51:31.569752559+02:00","level":"INFO","msg":"created new stream","id":"ec3fvzib"}
+{"time":"2025-05-20T10:51:31.569819374+02:00","level":"INFO","msg":"stream: started","id":"ec3fvzib"}
+{"time":"2025-05-20T10:51:31.569870981+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"ec3fvzib"}
+{"time":"2025-05-20T10:51:31.569967052+02:00","level":"INFO","msg":"sender: started","stream_id":"ec3fvzib"}
+{"time":"2025-05-20T10:51:31.569962363+02:00","level":"INFO","msg":"handler: started","stream_id":"ec3fvzib"}
+{"time":"2025-05-20T10:51:32.011032157+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-20T10:52:03.426744343+02:00","level":"INFO","msg":"stream: closing","id":"ec3fvzib"}
+{"time":"2025-05-20T10:52:03.426808563+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-20T10:52:03.427085564+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-20T10:52:04.157335215+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-20T10:52:04.392553969+02:00","level":"INFO","msg":"handler: closed","stream_id":"ec3fvzib"}
+{"time":"2025-05-20T10:52:04.392588043+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ec3fvzib"}
+{"time":"2025-05-20T10:52:04.392645912+02:00","level":"INFO","msg":"sender: closed","stream_id":"ec3fvzib"}
+{"time":"2025-05-20T10:52:04.393519414+02:00","level":"INFO","msg":"stream: closed","id":"ec3fvzib"}

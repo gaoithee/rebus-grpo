@@ -1,0 +1,7 @@
+{"time":"2025-05-16T17:26:41.256143842+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/u/scandussio/rebus-grpo/wandb/run-20250516_172641-w53j6665/logs/debug-core.log"}
+{"time":"2025-05-16T17:26:41.563756823+02:00","level":"INFO","msg":"created new stream","id":"w53j6665"}
+{"time":"2025-05-16T17:26:41.563785297+02:00","level":"INFO","msg":"stream: started","id":"w53j6665"}
+{"time":"2025-05-16T17:26:41.56381892+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"w53j6665"}
+{"time":"2025-05-16T17:26:41.563831253+02:00","level":"INFO","msg":"sender: started","stream_id":"w53j6665"}
+{"time":"2025-05-16T17:26:41.563864806+02:00","level":"INFO","msg":"handler: started","stream_id":"w53j6665"}
+{"time":"2025-05-16T17:26:41.904737615+02:00","level":"INFO","msg":"Starting system monitor"}

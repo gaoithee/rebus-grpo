@@ -1,0 +1,10 @@
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 81,318 | Num Epochs = 1 | Total steps = 20
+O^O/ \_/ \    Batch size per device = 6 | Gradient accumulation steps = 1
+\        /    Data Parallel GPUs = 1 | Total batch size (6 x 1 x 1) = 6
+ "-____-"     Trainable parameters = 41,943,040/8,000,000,000 (0.52% trained)
+wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
+ 10%|█         | 2/20 [06:18<56:14, 187.45s/it]  
+{'loss': 0.0093, 'grad_norm': 0.4046146869659424, 'learning_rate': 0.0, 'rewards/exact_match_solution': 0.0, 'rewards/perc_correct_words_solution': 0.8333333730697632, 'rewards/words_letters_match_primalet': 0.5, 'rewards/perc_correct_words_defres': 0.8333333730697632, 'reward': 2.1666667461395264, 'reward_std': 0.9831921458244324, 'completion_length': 500.0, 'kl': 0.23151877522468567, 'epoch': 0.0}
+Unsloth: Will smartly offload gradients to save VRAM!
+{'loss': 0.0202, 'grad_norm': 2.2050516605377197, 'learning_rate': 2.5e-06, 'rewards/exact_match_solution': 0.0, 'rewards/perc_correct_words_solution': 1.0, 'rewards/words_letters_match_primalet': 1.0, 'rewards/perc_correct_words_defres': 1.0, 'reward': 3.0, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 0.505630373954773, 'epoch': 0.0}
