@@ -1,7 +1,0 @@
-{"time":"2025-05-20T11:55:01.23980529+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/u/scandussio/rebus-grpo/wandb/run-20250520_115501-dukl98fv/logs/debug-core.log"}
-{"time":"2025-05-20T11:55:01.536273365+02:00","level":"INFO","msg":"created new stream","id":"dukl98fv"}
-{"time":"2025-05-20T11:55:01.536338437+02:00","level":"INFO","msg":"stream: started","id":"dukl98fv"}
-{"time":"2025-05-20T11:55:01.536395174+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"dukl98fv"}
-{"time":"2025-05-20T11:55:01.536431763+02:00","level":"INFO","msg":"sender: started","stream_id":"dukl98fv"}
-{"time":"2025-05-20T11:55:01.536456589+02:00","level":"INFO","msg":"handler: started","stream_id":"dukl98fv"}
-{"time":"2025-05-20T11:55:01.806961662+02:00","level":"INFO","msg":"Starting system monitor"}
