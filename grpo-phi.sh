@@ -4,8 +4,8 @@
 #SBATCH --partition=lovelace
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:1g.10gb:1
-#SBATCH --time=0-02:00:00
+#SBATCH --gres=gpu:a100:1
+#SBATCH --time=48:00:00
 #SBATCH --mem=64G
 #SBATCH --output=slurm_outputs/grpo-phi.out
 #SBATCH --cpus-per-task=8

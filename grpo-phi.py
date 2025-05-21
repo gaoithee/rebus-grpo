@@ -59,7 +59,6 @@ training_args = GRPOConfig(
 )
 
 
-
 trainer = GRPOTrainer(
     model=model,
     processing_class=tokenizer,
@@ -69,8 +68,9 @@ trainer = GRPOTrainer(
 )
 
 wandb.init(project="phi-GRPO")
+print("Training begins...")
 trainer.train()
-
+print("Training ends!")
 
 merged_model = trainer.model.merge_and_unload()
 merged_model.push_to_hub(

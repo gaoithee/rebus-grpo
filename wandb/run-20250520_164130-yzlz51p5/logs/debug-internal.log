@@ -1,0 +1,7 @@
+{"time":"2025-05-20T16:41:30.138322248+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/u/scandussio/rebus-grpo/wandb/run-20250520_164130-yzlz51p5/logs/debug-core.log"}
+{"time":"2025-05-20T16:41:30.42249415+02:00","level":"INFO","msg":"created new stream","id":"yzlz51p5"}
+{"time":"2025-05-20T16:41:30.422535147+02:00","level":"INFO","msg":"stream: started","id":"yzlz51p5"}
+{"time":"2025-05-20T16:41:30.422572958+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"yzlz51p5"}
+{"time":"2025-05-20T16:41:30.422588778+02:00","level":"INFO","msg":"sender: started","stream_id":"yzlz51p5"}
+{"time":"2025-05-20T16:41:30.422594158+02:00","level":"INFO","msg":"handler: started","stream_id":"yzlz51p5"}
+{"time":"2025-05-20T16:41:30.703119887+02:00","level":"INFO","msg":"Starting system monitor"}
