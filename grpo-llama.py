@@ -1,9 +1,11 @@
-import numpy as np
+# -*- coding: utf-8 -*-
+
+# import unsloth
 from unsloth import FastLanguageModel
 from datasets import load_dataset
 from trl import GRPOConfig, GRPOTrainer
 from tqdm import tqdm
-from reward_funcs import exact_match_solution, perc_correct_words_solution, words_letters_match_primalet, perc_correct_words_defres
+from reward_funcs import combined_rewards
 import wandb
 wandb.login(key="5a69225ea1d050c9c21f67c2db85febf61fa8fb1")
 
@@ -15,9 +17,10 @@ load_in_4bit = True # Use 4bit quantization to reduce memory usage. Can be False
 
 model_type = "llama" # llama, phi-3, gemma
 model, tokenizer = FastLanguageModel.from_pretrained(
-    model_name = "gsarti/llama-3.1-8b-rebus-solver-adapters",
-    max_seq_length = 1248,
-    load_in_4bit = True,
+    model_name = "gsarti/llama-3.1-8b-rebus-solver-adapters", # MODEL OR ADAPTER FOLDER
+    max_seq_length = max_seq_length,
+    dtype = dtype,
+    load_in_4bit = load_in_4bit,
 )
 
 
@@ -34,11 +37,10 @@ elif model_type in ("phi-3", "gemma"):
 
 
 eval_dataset = load_dataset('saracandu/eureka-rebus-grpo', data_files = ['train.csv'], split="train")
-
+eval_dataset = eval_dataset.select(range(13500))
 
 
 training_args = GRPOConfig(
-    output_dir = "GRPO-llama",
     learning_rate=5e-6, # può essere sensato tenerlo piccolo perché è già stato fine-tuned
     adam_beta1=0.9,
     adam_beta2=0.99,
@@ -47,31 +49,31 @@ training_args = GRPOConfig(
     lr_scheduler_type="cosine",
     optim="paged_adamw_8bit", # risparmia in memoria & aumenta la velocità
     logging_steps=50,
-    per_device_train_batch_size=4,
-    gradient_accumulation_steps=8,  # Increase to 4 for smoother training
-    num_generations=6,  # Decrease if out of memory
+    per_device_train_batch_size=12,
+    gradient_accumulation_steps=6,  # Increase to 4 for smoother training
+    num_generations=4,  # Decrease if out of memory
     max_prompt_length=256,
     max_completion_length=500,
-    num_train_epochs = 3, # Set to 1 for a full training run
-    save_steps=1000,
+    num_train_epochs = 1, # Set to 1 for a full training run
+    save_steps=50,
     max_grad_norm=0.1,
     report_to = ["wandb"],
+    output_dir="GRPO-llama",
 )
-
 
 
 trainer = GRPOTrainer(
     model=model,
     processing_class=tokenizer,
-    reward_funcs=[exact_match_solution, perc_correct_words_solution, words_letters_match_primalet, perc_correct_words_defres],
+    reward_funcs=[combined_rewards],
     args=training_args,
     train_dataset=eval_dataset,
 )
 
-
 wandb.init(project="llama-GRPO")
+print("Training begins...")
 trainer.train()
-
+print("Training ends!")
 
 merged_model = trainer.model.merge_and_unload()
 merged_model.push_to_hub(

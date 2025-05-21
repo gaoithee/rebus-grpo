@@ -1,0 +1,15 @@
+{"time":"2025-05-21T14:46:35.315317621+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/share/ai-lab/scandussio/rebus-grpo/wandb/run-20250521_144635-hd55abr4/logs/debug-core.log"}
+{"time":"2025-05-21T14:46:35.723305127+02:00","level":"INFO","msg":"created new stream","id":"hd55abr4"}
+{"time":"2025-05-21T14:46:35.72333872+02:00","level":"INFO","msg":"stream: started","id":"hd55abr4"}
+{"time":"2025-05-21T14:46:35.723362114+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"hd55abr4"}
+{"time":"2025-05-21T14:46:35.723366763+02:00","level":"INFO","msg":"sender: started","stream_id":"hd55abr4"}
+{"time":"2025-05-21T14:46:35.723379477+02:00","level":"INFO","msg":"handler: started","stream_id":"hd55abr4"}
+{"time":"2025-05-21T14:46:35.999375383+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-21T14:48:37.369437694+02:00","level":"INFO","msg":"stream: closing","id":"hd55abr4"}
+{"time":"2025-05-21T14:48:37.369521381+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-21T14:48:37.369709445+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-21T14:48:38.052797359+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-21T14:48:38.299067427+02:00","level":"INFO","msg":"handler: closed","stream_id":"hd55abr4"}
+{"time":"2025-05-21T14:48:38.29910085+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"hd55abr4"}
+{"time":"2025-05-21T14:48:38.299122411+02:00","level":"INFO","msg":"sender: closed","stream_id":"hd55abr4"}
+{"time":"2025-05-21T14:48:38.300161664+02:00","level":"INFO","msg":"stream: closed","id":"hd55abr4"}

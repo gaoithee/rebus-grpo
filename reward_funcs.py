@@ -149,4 +149,73 @@ def perc_correct_words_defres(prompts, completions, answer, **kwargs):
     return scores
 
 
+def combined_rewards(prompts, completions, answer, **kwargs):
+#    log_timestamp("combined_rewards", entry=True)
+
+    # Parse once
+    gold_dict = parse_generation(answer)
+    predicted_dicts = [parse_generation(c) for c in completions]
+
+    # Prepare gold values
+    gold_solution = gold_dict["solution"].lower()
+    gold_solution_words = gold_dict["solution_words"].lower().split(";")
+    gold_word_guesses = gold_dict["word_guesses"].lower().split(";")
+    gold_first_pass = split_words_and_letters(gold_dict["first_pass"].split(" "))
+
+    all_scores = []
+
+    for pred in predicted_dicts:
+        pred_solution = pred["solution"].lower()
+        pred_solution_words = pred["solution_words"].lower().split(";")
+        pred_word_guesses = pred["word_guesses"].lower().split(";")
+        pred_first_pass = split_words_and_letters(pred["first_pass"].split(" "))
+
+        # --- exact_match_solution ---
+        exact_match = 1.0 if pred_solution == gold_solution and pred_solution != "" else 0.0
+
+        # --- perc_correct_words_solution ---
+        pcw_score = 0
+        for pw, gw in zip(pred_solution_words, gold_solution_words):
+            if pw == gw:
+                pcw_score += 1
+            elif len(pw) == len(gw):
+                pcw_score += 0.5
+        pcw_score /= len(gold_solution_words) if gold_solution_words else 1
+
+        # --- perc_correct_words_defres ---
+        pwd_score = 0
+        for pw, gw in zip(pred_word_guesses, gold_word_guesses):
+            if pw == gw:
+                pwd_score += 1
+            elif len(pw) == len(gw):
+                pwd_score += 0.5
+        pwd_score /= len(gold_word_guesses) if gold_word_guesses else 1
+
+        # --- words_letters_match_primalet ---
+        # Words
+        word_score = 0
+        for pw, gw in zip(pred_first_pass["words"], gold_first_pass["words"]):
+            if pw == gw:
+                word_score += 1
+            elif len(pw) == len(gw):
+                word_score += 0.5
+        word_score /= len(gold_first_pass["words"]) if gold_first_pass["words"] else 1
+
+        # Letters
+        letter_score = 0
+        for pl, gl in zip(pred_first_pass["letters"], gold_first_pass["letters"]):
+            if pl.lower().replace(" ", "") == gl.lower().replace(" ", ""):
+                letter_score += 1
+        letter_score /= len(gold_first_pass["letters"]) if gold_first_pass["letters"] else 1
+
+        primalet_score = word_score + letter_score
+
+        # Collect all scores into a list
+        score = (exact_match + pcw_score + pwd_score + primalet_score) / 4
+        all_scores.append(score)  # Append the score to the list
+
+#    log_timestamp("combined_rewards", entry=False)
+
+    # Return a list of scores
+    return all_scores  # Return the list of scores
 

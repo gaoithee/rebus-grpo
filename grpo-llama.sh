@@ -17,8 +17,9 @@ echo "SLURM job node list: $SLURM_JOB_NODELIST"
 echo "DATE:                $(date)"
 echo "---------------------------------------------"
 
+# conda activate rebus-env
 
-srun /u/scandussio/.conda/envs/rebus-env/bin/python3.10 /u/scandussio/rebus-grpo/grpo-llama.py
+accelerate launch grpo-llama.py
 
 
 echo "DONE!"

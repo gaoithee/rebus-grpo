@@ -1,0 +1,9 @@
+Training begins...
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 13,500 | Num Epochs = 1 | Total steps = 750
+O^O/ \_/ \    Batch size per device = 12 | Gradient accumulation steps = 6
+\        /    Data Parallel GPUs = 1 | Total batch size (12 x 6 x 1) = 72
+ "-____-"     Trainable parameters = 29,884,416/4,000,000,000 (0.75% trained)
+wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
+  1%|          | 7/750 [17:30<30:47:59, 149.23s/it]
+Unsloth: Will smartly offload gradients to save VRAM!

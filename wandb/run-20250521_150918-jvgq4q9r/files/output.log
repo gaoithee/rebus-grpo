@@ -1,0 +1,31 @@
+Training begins...
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 81,318 | Num Epochs = 1 | Total steps = 10,164
+O^O/ \_/ \    Batch size per device = 12 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (12 x 4 x 1) = 48
+ "-____-"     Trainable parameters = 29,884,416/4,000,000,000 (0.75% trained)
+wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
+  0%|          | 0/10164 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/share/ai-lab/scandussio/rebus-grpo/grpo-phi.py", line 75, in <module>
+    trainer.train()
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "<string>", line 314, in _fast_inner_training_loop
+  File "<string>", line 25, in _unsloth_training_step
+  File "/share/ai-lab/scandussio/rebus-grpo/unsloth_compiled_cache/UnslothGRPOTrainer.py", line 1034, in _prepare_inputs
+    output_reward_func = reward_func(prompts=prompts, completions=completions, **reward_kwargs)
+  File "/share/ai-lab/scandussio/rebus-grpo/reward_funcs.py", line 153, in combined_rewards
+    log_timestamp("combined_rewards", entry=True)
+NameError: name 'log_timestamp' is not defined
+Traceback (most recent call last):
+  File "/share/ai-lab/scandussio/rebus-grpo/grpo-phi.py", line 75, in <module>
+    trainer.train()
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "<string>", line 314, in _fast_inner_training_loop
+  File "<string>", line 25, in _unsloth_training_step
+  File "/share/ai-lab/scandussio/rebus-grpo/unsloth_compiled_cache/UnslothGRPOTrainer.py", line 1034, in _prepare_inputs
+    output_reward_func = reward_func(prompts=prompts, completions=completions, **reward_kwargs)
+  File "/share/ai-lab/scandussio/rebus-grpo/reward_funcs.py", line 153, in combined_rewards
+    log_timestamp("combined_rewards", entry=True)
+NameError: name 'log_timestamp' is not defined
