@@ -1,0 +1,7 @@
+phi3-mini-rebus-solver-adapters-grpo/
+GRPO-llama/
+GRPO-phi/
+outputs/
+.ipynb_checkpoints/
+unsloth_compiled_cache/
+wandb/

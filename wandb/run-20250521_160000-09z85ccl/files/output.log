@@ -5,5 +5,84 @@ O^O/ \_/ \    Batch size per device = 12 | Gradient accumulation steps = 6
 \        /    Data Parallel GPUs = 1 | Total batch size (12 x 6 x 1) = 72
  "-____-"     Trainable parameters = 29,884,416/4,000,000,000 (0.75% trained)
 wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
-  1%|          | 7/750 [17:30<30:47:59, 149.23s/it]
+100%|██████████| 750/750 [31:01:04<00:00, 148.89s/it]   
 Unsloth: Will smartly offload gradients to save VRAM!
+{'loss': 17.4787, 'grad_norm': nan, 'learning_rate': 3.266666666666667e-06, 'rewards/combined_rewards': 0.7484027778108915, 'reward': 0.7484027778108915, 'reward_std': 0.0011755696932474772, 'completion_length': 499.57416666666666, 'kl': 436.96663224220276, 'epoch': 0.07}
+{'loss': 54.936, 'grad_norm': nan, 'learning_rate': 4.984419797901491e-06, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 1373.3994778235754, 'epoch': 0.13}
+{'loss': 172.1503, 'grad_norm': nan, 'learning_rate': 4.85318567856128e-06, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 4303.758163051605, 'epoch': 0.2}
+{'loss': 6526.46, 'grad_norm': nan, 'learning_rate': 4.595090710190419e-06, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 163161.5031050841, 'epoch': 0.27}
+{'loss': 50.0975, 'grad_norm': nan, 'learning_rate': 4.224048859339175e-06, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 1252.43750617822, 'epoch': 0.33}
+{'loss': 137.6094, 'grad_norm': nan, 'learning_rate': 3.760063088227542e-06, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 3440.234374514421, 'epoch': 0.4}
+{'loss': 23.8492, 'grad_norm': nan, 'learning_rate': 3.228146989874389e-06, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 596.2312634134292, 'epoch': 0.47}
+{'loss': 1770.8641, 'grad_norm': nan, 'learning_rate': 2.6569762988232838e-06, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 44271.59846191247, 'epoch': 0.53}
+{'loss': 27.8004, 'grad_norm': nan, 'learning_rate': 2.0773429748708153e-06, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 695.00902804931, 'epoch': 0.6}
+{'loss': 479703.04, 'grad_norm': nan, 'learning_rate': 1.520495200543754e-06, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 11992587.275552094, 'epoch': 0.67}
+{'loss': 37.1553, 'grad_norm': nan, 'learning_rate': 1.0164527834907468e-06, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 928.8815071296692, 'epoch': 0.73}
+{'loss': 31.745, 'grad_norm': nan, 'learning_rate': 5.923887808816373e-07, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 793.6253765757879, 'epoch': 0.8}
+{'loss': 30.1334, 'grad_norm': nan, 'learning_rate': 2.7116459286195887e-07, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 753.3353184016546, 'epoch': 0.87}
+{'loss': 229.5321, 'grad_norm': nan, 'learning_rate': 7.009749855363457e-08, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 5738.304517544905, 'epoch': 0.93}
+{'loss': 39.5046, 'grad_norm': nan, 'learning_rate': 2.7077055103075233e-11, 'rewards/combined_rewards': 0.75, 'reward': 0.75, 'reward_std': 0.0, 'completion_length': 500.0, 'kl': 987.6162344630559, 'epoch': 1.0}
+{'train_runtime': 111664.26, 'train_samples_per_second': 0.121, 'train_steps_per_second': 0.007, 'train_loss': 32590.15706624349, 'epoch': 1.0}
+Training ends!
+/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/peft/tuners/lora/bnb.py:351: UserWarning: Merge lora module to 4-bit linear may get different generations due to rounding errors.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth/save.py", line 1398, in _determine_username
+    username = whoami(token = token)["name"]
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 1743, in whoami
+    headers=self._build_hf_headers(token=effective_token),
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 9491, in _build_hf_headers
+    return build_hf_headers(
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/utils/_deprecation.py", line 101, in inner_f
+    return f(*args, **kwargs)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/utils/_headers.py", line 126, in build_hf_headers
+    token_to_send = get_token_to_send(token)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/utils/_headers.py", line 159, in get_token_to_send
+    raise LocalTokenNotFoundError(
+huggingface_hub.errors.LocalTokenNotFoundError: Token is required (`token=True`), but no token found. You need to provide a token or be logged in to Hugging Face with `huggingface-cli login` or `huggingface_hub.login`. See https://huggingface.co/settings/tokens.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/share/ai-lab/scandussio/rebus-grpo/grpo-phi.py", line 79, in <module>
+    merged_model.push_to_hub(
+  File "<string>", line 84, in unsloth_push_to_hub
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth/save.py", line 1462, in upload_to_huggingface
+    save_directory, username = _determine_username(save_directory, old_username, token)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth/save.py", line 1404, in _determine_username
+    raise RuntimeError(f"Unsloth: {save_directory} is not a Huggingface directory.")
+RuntimeError: Unsloth: phi3-mini-rebus-solver-adapter-grpo is not a Huggingface directory.
+Traceback (most recent call last):
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth/save.py", line 1398, in _determine_username
+    username = whoami(token = token)["name"]
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 1743, in whoami
+    headers=self._build_hf_headers(token=effective_token),
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 9491, in _build_hf_headers
+    return build_hf_headers(
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/utils/_deprecation.py", line 101, in inner_f
+    return f(*args, **kwargs)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/utils/_headers.py", line 126, in build_hf_headers
+    token_to_send = get_token_to_send(token)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/huggingface_hub/utils/_headers.py", line 159, in get_token_to_send
+    raise LocalTokenNotFoundError(
+huggingface_hub.errors.LocalTokenNotFoundError: Token is required (`token=True`), but no token found. You need to provide a token or be logged in to Hugging Face with `huggingface-cli login` or `huggingface_hub.login`. See https://huggingface.co/settings/tokens.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/share/ai-lab/scandussio/rebus-grpo/grpo-phi.py", line 79, in <module>
+    merged_model.push_to_hub(
+  File "<string>", line 84, in unsloth_push_to_hub
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth/save.py", line 1462, in upload_to_huggingface
+    save_directory, username = _determine_username(save_directory, old_username, token)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth/save.py", line 1404, in _determine_username
+    raise RuntimeError(f"Unsloth: {save_directory} is not a Huggingface directory.")
+RuntimeError: Unsloth: phi3-mini-rebus-solver-adapter-grpo is not a Huggingface directory.

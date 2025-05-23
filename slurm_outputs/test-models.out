@@ -1,0 +1,10 @@
+---------------------------------------------
+SLURM job ID:        14805
+SLURM job node list: lovelace-02
+DATE:                Fri May 23 11:21:21 AM CEST 2025
+---------------------------------------------
+Traceback (most recent call last):
+  File "/share/ai-lab/scandussio/rebus-grpo/test-models.py", line 1, in <module>
+    from unsloth import FastLanguageModel
+ModuleNotFoundError: No module named 'unsloth'
+DONE!

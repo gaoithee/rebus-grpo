@@ -75,10 +75,10 @@ print("Training begins...")
 trainer.train()
 print("Training ends!")
 
-merged_model = trainer.model.merge_and_unload()
-merged_model.push_to_hub(
-    "phi3-mini-rebus-solver-adapter-grpo", private=False, tags=["GRPO", "phi3"]
-)
-tokenizer.push_to_hub("phi3-mini-rebus-solver-adapter-grpo")
+# merged_model = trainer.model.merge_and_unload()
+# merged_model.push_to_hub(
+#     "phi3-mini-rebus-solver-adapter-grpo", private=False, tags=["GRPO", "phi3"]
+# )
+# tokenizer.push_to_hub("phi3-mini-rebus-solver-adapter-grpo")
 
 
