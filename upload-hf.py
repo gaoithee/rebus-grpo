@@ -5,8 +5,8 @@ from huggingface_hub import HfApi
 api = HfApi()
 
 # Carica tutti i file dentro checkpoint-750
-folder = "GRPO-phi/checkpoint-750"
-repo_id = "saracandu/phi3-mini-rebus-solver-adapters-grpo"
+folder = "GRPO-llama/checkpoint-750"
+repo_id = "saracandu/llama-3.1-8b-rebus-solver-adapters-grpo"
 
 for filename in os.listdir(folder):
     filepath = os.path.join(folder, filename)
