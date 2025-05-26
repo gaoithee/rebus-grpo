@@ -70,7 +70,7 @@ trainer = GRPOTrainer(
     train_dataset=eval_dataset,
 )
 
-wandb.init(project="phi-GRPO")
+wandb.init(project="phi-GRPO-disjoint")
 print("Training begins...")
 trainer.train()
 print("Training ends!")

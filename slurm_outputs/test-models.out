@@ -1,7 +1,7 @@
 ---------------------------------------------
-SLURM job ID:        14805
+SLURM job ID:        14848
 SLURM job node list: lovelace-02
-DATE:                Fri May 23 11:21:21 AM CEST 2025
+DATE:                Fri May 23 03:31:51 PM CEST 2025
 ---------------------------------------------
 Traceback (most recent call last):
   File "/share/ai-lab/scandussio/rebus-grpo/test-models.py", line 1, in <module>

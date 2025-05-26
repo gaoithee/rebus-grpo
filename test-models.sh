@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH --no-requeue
-#SBATCH --job-name="test"
+#SBATCH --job-name="llama"
 #SBATCH --partition=lovelace
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:a100:1
 #SBATCH --time=48:00:00
-#SBATCH --mem=64G
-#SBATCH --output=slurm_outputs/test-models.out
+#SBATCH --mem=64GB
+#SBATCH --output=slurm_outputs/test-llama.out
 #SBATCH --cpus-per-task=8
 
 # Standard preamble for debugging
@@ -19,7 +19,7 @@ echo "---------------------------------------------"
 
 # conda activate rebus-env
 
-accelerate launch test-models.py
+python test-llama.py
 
 
 echo "DONE!"

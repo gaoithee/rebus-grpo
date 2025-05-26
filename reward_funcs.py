@@ -150,7 +150,6 @@ def perc_correct_words_defres(prompts, completions, answer, **kwargs):
 
 
 def combined_rewards(prompts, completions, answer, **kwargs):
-#    log_timestamp("combined_rewards", entry=True)
 
     # Parse once
     gold_dict = parse_generation(answer)
@@ -213,8 +212,6 @@ def combined_rewards(prompts, completions, answer, **kwargs):
         # Collect all scores into a list
         score = (exact_match + pcw_score + pwd_score + primalet_score) / 4
         all_scores.append(score)  # Append the score to the list
-
-#    log_timestamp("combined_rewards", entry=False)
 
     # Return a list of scores
     return all_scores  # Return the list of scores

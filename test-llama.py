@@ -3,10 +3,10 @@ from unsloth import FastLanguageModel
 max_seq_length = 1248 # Choose any! We auto support RoPE Scaling internally!
 dtype = None # None for auto detection. Float16 for Tesla T4, V100, Bfloat16 for Ampere+
 
-model_type = "phi-3" # llama, phi-3, gemma
+model_type = "llama" # llama, phi-3, gemma
 
 model, tokenizer = FastLanguageModel.from_pretrained(
-    model_name = "saracandu/phi3-mini-rebus-solver-adapters-grpo", 
+    model_name = "saracandu/llama-3.1-8b-rebus-solver-adapters-grpo", 
     max_seq_length = max_seq_length,
     dtype = dtype,
 )
@@ -104,6 +104,6 @@ for i in tqdm(range(0, len(eval_dataset), batch_size), total=len(eval_dataset)//
 import pandas as pd
 
 df = pd.DataFrame(results)
-df.to_csv("phi3_mini_results_step_750.csv")
+df.to_csv("llama_results_step_750.csv")
 
 
