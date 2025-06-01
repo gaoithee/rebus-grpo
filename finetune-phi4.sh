@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH --no-requeue
-#SBATCH --job-name="phi-test"
-#SBATCH --partition=lovelace
+#SBATCH --job-name="phi4"
+#SBATCH --partition=Main
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:a100:1
 #SBATCH --time=48:00:00
-#SBATCH --mem=64GB
-#SBATCH --output=slurm_outputs/test-phi-coldstart-grpo.out
+#SBATCH --mem=500G
+#SBATCH --output=slurm_outputs/finetune-phi4-mini.out
 #SBATCH --cpus-per-task=8
 
 # Standard preamble for debugging
@@ -17,8 +17,11 @@ echo "SLURM job node list: $SLURM_JOB_NODELIST"
 echo "DATE:                $(date)"
 echo "---------------------------------------------"
 
-# conda activate rebus-env
-accelerate launch test-phi.py
+source ~/.bashrc
+
+conda init bash
+conda activate rebus-env
+accelerate launch finetune-phi4.py
 
 
 echo "DONE!"

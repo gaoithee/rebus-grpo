@@ -1,33 +1,40 @@
 import re
 
-regex_word_guess = '- \[.* = (.*)'
-regex_firstpass = 'Prima lettura: (.*)'
-regex_solution_word = "\d+ = (.*)"
-regex_solution = "Soluzione: (.*)"
+regex_risposta = r'<risposta>(.*?)</risposta>'
+regex_primalettura = r'<primalettura>(.*?)</primalettura>'
+regex_parolanascosta = r'<parolanascosta>(.*?)</parolanascosta>'
+regex_soluzione = r'<soluzione>(.*?)</soluzione>'
 
 def parse_generation(data):
     try:
-        word_guesses = ";".join(re.findall(regex_word_guess, data))
+        # Estrai tutte le risposte e uniscile con un separatore ";"
+        risposte = ";".join(re.findall(regex_risposta, data))
     except:
-        word_guesses = ""
+        risposte = ""
+    
     try:
-        first_pass = re.findall(regex_firstpass, data)[0]
+        # Estrai tutte le parole nascoste e uniscile con un separatore ";"
+        parole_nascoste = ";".join(re.findall(regex_parolanascosta, data))
     except:
-        first_pass = ""
+        parole_nascoste = ""
+    
     try:
-        solution_words = ";".join(re.findall(regex_solution_word, data))
+        # Estrai la soluzione
+        soluzione = re.findall(regex_soluzione, data)[0]
     except:
-        solution_words = ""
+        soluzione = ""
+    
     try:
-        solution = re.findall(regex_solution, data)[0]
+        # Estrai la prima lettura
+        primalettura = ";".join(re.findall(regex_primalettura, data))
     except:
-        solution = ""
+        primalettura = ""
     
     return {
-        "word_guesses": word_guesses,
-        "first_pass": first_pass,
-        "solution_words": solution_words,
-        "solution": solution,
+        "word_guesses": risposte.lower(),
+        "solution_words": parole_nascoste.lower(),
+        "solution": soluzione.lower(),
+        "first_pass": primalettura
     }
 
 
@@ -223,3 +230,72 @@ def words_letters_match_primalet(prompts, completions, answer, **kwargs):
 
         scores.append(word_score + letter_score)
     return scores
+
+
+
+def combined_rewards(prompts, completions, answer, **kwargs):
+
+    # Parse once
+    gold_dict = parse_generation(answer)
+    predicted_dicts = [parse_generation(c) for c in completions]
+
+    # Prepare gold values
+    gold_solution = gold_dict["solution"].lower()
+    gold_solution_words = gold_dict["solution_words"].lower().split(";")
+    gold_word_guesses = gold_dict["word_guesses"].lower().split(";")
+    gold_first_pass = split_words_and_letters(gold_dict["first_pass"].split(" "))
+
+    all_scores = []
+
+    for pred in predicted_dicts:
+        pred_solution = pred["solution"].lower()
+        pred_solution_words = pred["solution_words"].lower().split(";")
+        pred_word_guesses = pred["word_guesses"].lower().split(";")
+        pred_first_pass = split_words_and_letters(pred["first_pass"].split(" "))
+
+        # --- exact_match_solution ---
+        exact_match = 1.0 if pred_solution == gold_solution and pred_solution != "" else 0.0
+
+        # --- perc_correct_words_solution ---
+        pcw_score = 0
+        for pw, gw in zip(pred_solution_words, gold_solution_words):
+            if pw == gw:
+                pcw_score += 1
+            elif len(pw) == len(gw):
+                pcw_score += 0.5
+        pcw_score /= len(gold_solution_words) if gold_solution_words else 1
+
+        # --- perc_correct_words_defres ---
+        pwd_score = 0
+        for pw, gw in zip(pred_word_guesses, gold_word_guesses):
+            if pw == gw:
+                pwd_score += 1
+            elif len(pw) == len(gw):
+                pwd_score += 0.5
+        pwd_score /= len(gold_word_guesses) if gold_word_guesses else 1
+
+        # --- words_letters_match_primalet ---
+        # Words
+        word_score = 0
+        for pw, gw in zip(pred_first_pass["words"], gold_first_pass["words"]):
+            if pw == gw:
+                word_score += 1
+            elif len(pw) == len(gw):
+                word_score += 0.5
+        word_score /= len(gold_first_pass["words"]) if gold_first_pass["words"] else 1
+
+        # Letters
+        letter_score = 0
+        for pl, gl in zip(pred_first_pass["letters"], gold_first_pass["letters"]):
+            if pl.lower().replace(" ", "") == gl.lower().replace(" ", ""):
+                letter_score += 1
+        letter_score /= len(gold_first_pass["letters"]) if gold_first_pass["letters"] else 1
+
+        primalet_score = word_score + letter_score
+
+        # Collect all scores into a list
+        score = (exact_match + pcw_score + pwd_score + primalet_score) / 3
+        all_scores.append(score)  # Append the score to the list
+
+    # Return a list of scores
+    return all_scores  # Return the list of scores

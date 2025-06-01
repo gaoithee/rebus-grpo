@@ -1,7 +1,10 @@
-phi3-mini-rebus-solver-adapters-grpo/
-GRPO-llama/
-GRPO-phi/
+saracandu/
 outputs/
 .ipynb_checkpoints/
 unsloth_compiled_cache/
 wandb/
+avoid/
+errors/
+GRPO-llama-coldstart/
+cold-start-llama/
+trained-models/

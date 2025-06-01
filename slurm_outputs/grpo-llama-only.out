@@ -1,0 +1,19 @@
+---------------------------------------------
+SLURM job ID:        15058
+SLURM job node list: babbage
+DATE:                Tue May 27 10:35:31 AM CEST 2025
+---------------------------------------------
+Loading python/3.11.6-gcc-13.2.0-bukak3r
+  Loading requirement: bzip2/1.0.8-gcc-13.2.0-opre5aw
+    libmd/1.0.4-gcc-13.2.0-o6hg53a libbsd/0.11.7-gcc-13.2.0-lnhjtd7
+    expat/2.5.0-gcc-13.2.0-lm5sfqu ncurses/6.4-gcc-13.2.0-ycfzsj2
+    readline/8.2-gcc-13.2.0-vwemequ gdbm/1.23-gcc-13.2.0-gkv4rn5
+    libiconv/1.17-gcc-13.2.0-miz2axu xz/5.4.1-gcc-13.2.0-kzfxhck
+    zlib-ng/2.1.4-gcc-13.2.0-tyhpb2v libxml2/2.10.3-gcc-13.2.0-vpbwclz
+    pigz/2.7-gcc-13.2.0-3rl3t5a zstd/1.5.5-gcc-13.2.0-lahy4g7
+    tar/1.34-gcc-13.2.0-llfnkrc gettext/0.22.3-gcc-13.2.0-z7fa343
+    libffi/3.4.4-gcc-13.2.0-5wr7lds libxcrypt/4.4.35-gcc-13.2.0-pkmz2mz
+    openssl/3.1.3-gcc-13.2.0-4w3ukgi sqlite/3.43.2-gcc-13.2.0-cvoqrwv
+    util-linux-uuid/2.38.1-gcc-13.2.0-jdozvyg
+/var/spool/slurm/slurmd/job15058/slurm_script: line 23: accelerate: command not found
+DONE!

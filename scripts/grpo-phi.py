@@ -6,6 +6,7 @@ from datasets import load_dataset
 from trl import GRPOConfig, GRPOTrainer
 from tqdm import tqdm
 from reward_funcs import combined_rewards
+# from reward_funcs import exact_match_solution, perc_correct_words_solution, perc_correct_words_defres, words_letters_match_primalet
 import wandb
 wandb.login(key="5a69225ea1d050c9c21f67c2db85febf61fa8fb1")
 
@@ -15,9 +16,9 @@ dtype = None # None for auto detection. Float16 for Tesla T4, V100, Bfloat16 for
 load_in_4bit = True # Use 4bit quantization to reduce memory usage. Can be False.
 
 
-model_type = "llama" # llama, phi-3, gemma
+model_type = "phi-3" # llama, phi-3, gemma
 model, tokenizer = FastLanguageModel.from_pretrained(
-    model_name = "gsarti/llama-3.1-8b-rebus-solver-adapters", # MODEL OR ADAPTER FOLDER
+    model_name = "gsarti/phi3-mini-rebus-solver-adapters", # MODEL OR ADAPTER FOLDER
     max_seq_length = max_seq_length,
     dtype = dtype,
     load_in_4bit = load_in_4bit,
@@ -58,7 +59,7 @@ training_args = GRPOConfig(
     save_steps=50,
     max_grad_norm=0.1,
     report_to = ["wandb"],
-    output_dir="GRPO-llama",
+    output_dir="GRPO-phi",
 )
 
 
@@ -70,15 +71,15 @@ trainer = GRPOTrainer(
     train_dataset=eval_dataset,
 )
 
-wandb.init(project="llama-GRPO")
+wandb.init(project="phi-GRPO")
 print("Training begins...")
 trainer.train()
 print("Training ends!")
 
-merged_model = trainer.model.merge_and_unload()
-merged_model.push_to_hub(
-    "llama-3.1-8b-rebus-solver-adapter-grpo", private=False, tags=["GRPO", "llama"]
-)
-tokenizer.push_to_hub("llama-3.1-8b-rebus-solver-adapter-grpo")
+# merged_model = trainer.model.merge_and_unload()
+# merged_model.push_to_hub(
+#     "phi3-mini-rebus-solver-adapter-grpo", private=False, tags=["GRPO", "phi3"]
+# )
+# tokenizer.push_to_hub("phi3-mini-rebus-solver-adapter-grpo")
 
 

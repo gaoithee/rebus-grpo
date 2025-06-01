@@ -5,7 +5,7 @@ from unsloth import FastLanguageModel
 from datasets import load_dataset
 from trl import GRPOConfig, GRPOTrainer
 from tqdm import tqdm
-from reward_funcs import combined_rewards
+from reward_funcs import exact_match_solution, perc_correct_words_solution, perc_correct_words_defres, words_letters_match_primalet
 import wandb
 wandb.login(key="5a69225ea1d050c9c21f67c2db85febf61fa8fb1")
 
@@ -17,7 +17,7 @@ load_in_4bit = True # Use 4bit quantization to reduce memory usage. Can be False
 
 model_type = "phi-3" # llama, phi-3, gemma
 model, tokenizer = FastLanguageModel.from_pretrained(
-    model_name = "gsarti/phi3-mini-rebus-solver-adapters", # MODEL OR ADAPTER FOLDER
+    model_name = "unsloth/Phi-3-mini-4k-instruct-v0-bnb-4bit", # MODEL OR ADAPTER FOLDER
     max_seq_length = max_seq_length,
     dtype = dtype,
     load_in_4bit = load_in_4bit,
@@ -58,27 +58,27 @@ training_args = GRPOConfig(
     save_steps=50,
     max_grad_norm=0.1,
     report_to = ["wandb"],
-    output_dir="GRPO-phi",
+    output_dir="GRPO-only-llama",
 )
 
 
 trainer = GRPOTrainer(
     model=model,
     processing_class=tokenizer,
-    reward_funcs=[combined_rewards],
+    reward_funcs=[words_letters_match_primalet, perc_correct_words_defres, perc_correct_words_solution, exact_match_solution],
     args=training_args,
     train_dataset=eval_dataset,
 )
 
-wandb.init(project="phi-GRPO-disjoint")
+wandb.init(project="llama-GRPO-only")
 print("Training begins...")
 trainer.train()
 print("Training ends!")
 
 # merged_model = trainer.model.merge_and_unload()
 # merged_model.push_to_hub(
-#     "phi3-mini-rebus-solver-adapter-grpo", private=False, tags=["GRPO", "phi3"]
+#    "llama-3.1-8b-rebus-solver-adapter-grpo", private=False, tags=["GRPO", "llama"]
 # )
-# tokenizer.push_to_hub("phi3-mini-rebus-solver-adapter-grpo")
+# tokenizer.push_to_hub("llama-3.1-8b-rebus-solver-adapter-grpo")
 
 

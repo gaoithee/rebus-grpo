@@ -1,0 +1,48 @@
+---------------------------------------------
+SLURM job ID:        15351
+SLURM job node list: babbage
+DATE:                Fri May 30 05:02:34 PM CEST 2025
+---------------------------------------------
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/condabin/conda
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/conda
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/conda-env
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/activate
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/deactivate
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/etc/profile.d/conda.sh
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/etc/fish/conf.d/conda.fish
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/shell/condabin/Conda.psm1
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/shell/condabin/conda-hook.ps1
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/lib/python3.10/site-packages/xontrib/conda.xsh
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/etc/profile.d/conda.csh
+no change     /u/scandussio/.bashrc
+No action taken.
+🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+🦥 Unsloth Zoo will now patch everything to make training faster!
+INFO 05-30 17:03:04 __init__.py:190] Automatically detected platform cuda.
+==((====))==  Unsloth 2025.5.6: Fast Llama patching. Transformers: 4.51.3. vLLM: 0.7.2.
+   \\   /|    NVIDIA A100-PCIE-40GB. Num GPUs = 1. Max memory: 39.381 GB. Platform: Linux.
+O^O/ \_/ \    Torch: 2.5.1+cu124. CUDA: 8.0. CUDA Toolkit: 12.4. Triton: 3.1.0
+\        /    Bfloat16 = TRUE. FA [Xformers = 0.0.28.post3. FA2 = False]
+ "-____-"     Free license: http://github.com/unslothai/unsloth
+Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+Unsloth: Will smartly offload gradients to save VRAM!
+{'loss': 0.4169, 'grad_norm': 0.2968081533908844, 'learning_rate': 0.00019800000000000002, 'epoch': 0.04}
+{'loss': 0.0769, 'grad_norm': 0.21128658950328827, 'learning_rate': 0.0001505, 'epoch': 0.08}
+{'loss': 0.0565, 'grad_norm': 0.1653880476951599, 'learning_rate': 0.00010049999999999999, 'epoch': 0.12}
+{'loss': 0.0431, 'grad_norm': 0.1447616070508957, 'learning_rate': 5.05e-05, 'epoch': 0.16}
+{'loss': 0.037, 'grad_norm': 0.15010863542556763, 'learning_rate': 5.000000000000001e-07, 'epoch': 0.2}
+{'eval_loss': 0.05427319556474686, 'eval_runtime': 93.3634, 'eval_samples_per_second': 21.4, 'eval_steps_per_second': 5.355, 'epoch': 0.2}
+{'train_runtime': 2263.6192, 'train_samples_per_second': 7.068, 'train_steps_per_second': 0.221, 'train_loss': 0.1260761995315552, 'epoch': 0.2}
+Unsloth: Merging 4bit and LoRA weights to 16bit...
+Unsloth: Will use up to 552.74 out of 754.01 RAM for saving.
+Unsloth: Saving model... This might take 5 minutes ...
+Unsloth: Saving to organization with address saracandu/llama-3.1-8b-rebus-solver-coldstart-retrained
+Unsloth: Saving tokenizer... Done.
+Unsloth: Saving to organization with address saracandu/llama-3.1-8b-rebus-solver-coldstart-retrained
+Unsloth: Uploading all files... Please wait...
+Done.
+Saved merged model to https://huggingface.co/None/llama-3.1-8b-rebus-solver-coldstart-retrained
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33moutputs[0m at: [34mhttps://wandb.ai/saracandussio-universit-degli-studi-di-trieste/huggingface/runs/lmuwz47e[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250530_170334-lmuwz47e/logs[0m
+DONE!

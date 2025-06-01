@@ -1,0 +1,23 @@
+---------------------------------------------
+SLURM job ID:        15518
+SLURM job node list: lovelace-01
+DATE:                Sun Jun  1 05:41:23 PM CEST 2025
+---------------------------------------------
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+🦥 Unsloth Zoo will now patch everything to make training faster!
+INFO 06-01 17:41:39 __init__.py:190] Automatically detected platform cuda.
+Unsloth 2025.5.6 patched 32 layers with 32 QKV layers, 32 O layers and 32 MLP layers.
+==((====))==  Unsloth 2025.5.6: Fast Mistral patching. Transformers: 4.51.3. vLLM: 0.7.2.
+   \\   /|    NVIDIA A100 80GB PCIe. Num GPUs = 1. Max memory: 79.138 GB. Platform: Linux.
+O^O/ \_/ \    Torch: 2.5.1+cu124. CUDA: 8.0. CUDA Toolkit: 12.4. Triton: 3.1.0
+\        /    Bfloat16 = TRUE. FA [Xformers = 0.0.28.post3. FA2 = False]
+ "-____-"     Free license: http://github.com/unslothai/unsloth
+Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+Processing examples:   0%|          | 0/1998 [00:00<?, ?it/s]The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Processing examples:   0%|          | 1/1998 [00:07<4:02:33,  7.29s/it]Processing examples:   0%|          | 2/1998 [00:13<3:43:59,  6.73s/it]Processing examples:   0%|          | 3/1998 [00:19<3:31:20,  6.36s/it]Processing examples:   0%|          | 4/1998 [00:26<3:35:33,  6.49s/it]Processing examples:   0%|          | 5/1998 [00:32<3:33:34,  6.43s/it]Processing examples:   0%|          | 6/1998 [00:36<3:10:46,  5.75s/it]Processing examples:   0%|          | 7/1998 [00:43<3:15:11,  5.88s/it]Processing examples:   0%|          | 8/1998 [00:48<3:12:18,  5.80s/it]Processing examples:   0%|          | 9/1998 [00:53<2:58:17,  5.38s/it]Processing examples:   1%|          | 10/1998 [00:57<2:51:32,  5.18s/it]Processing examples:   1%|          | 11/1998 [01:02<2:49:42,  5.12s/it]Processing examples:   1%|          | 12/1998 [01:08<2:57:25,  5.36s/it]Processing examples:   1%|          | 13/1998 [01:14<2:58:49,  5.41s/it]Processing examples:   1%|          | 14/1998 [01:18<2:48:59,  5.11s/it]Processing examples:   1%|          | 15/1998 [01:25<3:03:30,  5.55s/it]Processing examples:   1%|          | 16/1998 [01:30<3:01:55,  5.51s/it]Processing examples:   1%|          | 17/1998 [01:34<2:44:29,  4.98s/it]Processing examples:   1%|          | 18/1998 [01:39<2:45:50,  5.03s/it]Processing examples:   1%|          | 19/1998 [01:44<2:47:59,  5.09s/it]Processing examples:   1%|          | 20/1998 [01:50<2:49:52,  5.15s/it]Processing examples:   1%|          | 21/1998 [01:56<2:56:51,  5.37s/it]Processing examples:   1%|          | 22/1998 [02:01<2:58:20,  5.42s/it]Processing examples:   1%|          | 23/1998 [02:07<2:58:50,  5.43s/it]Processing examples:   1%|          | 24/1998 [02:11<2:50:40,  5.19s/it]Processing examples:   1%|▏         | 25/1998 [02:17<2:56:30,  5.37s/it]Processing examples:   1%|▏         | 26/1998 [02:23<3:00:29,  5.49s/it]Processing examples:   1%|▏         | 27/1998 [02:28<2:54:26,  5.31s/it]Processing examples:   1%|▏         | 28/1998 [02:33<2:55:18,  5.34s/it]Processing examples:   1%|▏         | 29/1998 [02:40<3:06:42,  5.69s/it]Processing examples:   2%|▏         | 30/1998 [02:44<2:57:40,  5.42s/it]Processing examples:   2%|▏         | 31/1998 [02:51<3:07:31,  5.72s/it]Processing examples:   2%|▏         | 32/1998 [02:57<3:07:49,  5.73s/it]Processing examples:   2%|▏         | 33/1998 [03:01<2:59:56,  5.49s/it]Processing examples:   2%|▏         | 34/1998 [03:06<2:51:18,  5.23s/it]

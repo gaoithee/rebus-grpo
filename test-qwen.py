@@ -4,9 +4,9 @@ from reward_funcs import parse_generation
 max_seq_length = 1248 # Choose any! We auto support RoPE Scaling internally!
 dtype = None # None for auto detection. Float16 for Tesla T4, V100, Bfloat16 for Ampere+
 
-model_type = "llama" # llama, phi-3, gemma
+model_type = "qwen-2.5" # llama, phi-3, gemma
 
-model, tokenizer = FastLanguageModel.from_pretrained(model_name = "saracandu/llama-3.1-8b-rebus-solver-adapters-grpo")
+model, tokenizer = FastLanguageModel.from_pretrained(model_name = "saracandu/qwen3-4b-rebus-solver-adapters")
 FastLanguageModel.for_inference(model)
 
 from datasets import load_dataset
@@ -24,7 +24,7 @@ if model_type == "gemma":
 
 if model_type == "llama":
     tokenizer.padding_side = "right"
-elif model_type in ("phi-3", "gemma"):
+elif model_type in ("phi-3", "gemma", "qwen-2.5"):
     tokenizer.padding_side = "left"
 
 results = []
@@ -50,4 +50,4 @@ for ex_idx in tqdm(range(0, len(eval_dataset)), desc="Processing examples"):
 import pandas as pd
 
 df = pd.DataFrame(results)
-df.to_csv("llama_results_step_750.csv")
+df.to_csv("phi3_mini_disjoint_results_step_250.csv")
