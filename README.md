@@ -32,12 +32,15 @@ Mounting GRPO (300 steps) on SFT checkpoints:
 Re-run SFT testing phases:
 | Model / Config        | Phi-3 Mini 3.8B | LLaMA-3.1 8B Instruct |
 |-----------------------|-----------------|-----------------------|
-| SFT (5070) + GRPO     | -               | ⏱️        |
-| SFT (4000) + GRPO     | -               | ⏱️        |
-| SFT (3000) + GRPO     | -               | ⏱️        |
-| SFT (2000) + GRPO     | -​               | ⏱️        |
-| SFT (1000) + GRPO     | -​               | ⏱️        |
-| SFT (500) + GRPO      | -               | -         |
+| SFT (5070)            | -               | ⏱️                    |
+| SFT (4000)            | -               | ⏱️                    |
+| SFT (3000)            | -               | ⏱️                    |
+| SFT (2000)            | -​               | ⏱️                    |
+| SFT (1000)            | -​               | ⏱️                    |
+| SFT (500)             | -               | -                     |
 
+---
+
+TO-DO: run SFT+GRPO testing phases
 
 
