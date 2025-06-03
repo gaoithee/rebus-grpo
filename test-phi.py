@@ -6,7 +6,13 @@ dtype = None # None for auto detection. Float16 for Tesla T4, V100, Bfloat16 for
 
 model_type = "phi-3" # llama, phi-3, gemma
 
-model, tokenizer = FastLanguageModel.from_pretrained(model_name = "saracandu/phi3-mini-rebus-solver-coldstart-grpo")
+model_type = "phi-3" # llama, phi-3, gemma
+model, tokenizer = FastLanguageModel.from_pretrained(
+    model_name = "gsarti/phi3-mini-rebus-solver-adapters",
+    max_seq_length = 1248,
+    load_in_4bit = True,
+    revision="4d2d43ee757bc1cc007629f58558876a95b5ae07" # preso da https://huggingface.co/gsarti/phi3-mini-rebus-solver-adapters/commits/main
+)
 FastLanguageModel.for_inference(model)
 
 from datasets import load_dataset
@@ -44,10 +50,10 @@ for ex_idx in tqdm(range(0, len(eval_dataset)), desc="Processing examples"):
     outputs = model.generate(input_ids = inputs, max_new_tokens = 500, use_cache = True, eos_token_id = stop_token_id)
     model_generations = tokenizer.batch_decode(outputs)
     results.append(parse_generation(model_generations[0]))
-    # print(parse_generation(model_generations[0]))
-    # print('#######################################')
+    print(parse_generation(model_generations[0]))
+    print('#######################################')
 
 import pandas as pd
 
 df = pd.DataFrame(results)
-df.to_csv("phi3_mini_coldstart_grpo_results_step_250.csv")
+df.to_csv("phi3_mini_results_step_4000.csv")
