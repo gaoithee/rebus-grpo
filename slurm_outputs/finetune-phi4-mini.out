@@ -1,0 +1,105 @@
+---------------------------------------------
+SLURM job ID:        15507
+SLURM job node list: babbage
+DATE:                Mon Jun  2 12:27:03 PM CEST 2025
+---------------------------------------------
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/condabin/conda
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/conda
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/conda-env
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/activate
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/deactivate
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/etc/profile.d/conda.sh
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/etc/fish/conf.d/conda.fish
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/shell/condabin/Conda.psm1
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/shell/condabin/conda-hook.ps1
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/lib/python3.10/site-packages/xontrib/conda.xsh
+no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/etc/profile.d/conda.csh
+no change     /u/scandussio/.bashrc
+No action taken.
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+🦥 Unsloth Zoo will now patch everything to make training faster!
+INFO 06-02 12:27:33 __init__.py:190] Automatically detected platform cuda.
+Traceback (most recent call last):
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth_zoo/compiler.py", line 391, in create_new_function
+    new_module, old_path = import_module(compile_folder, name)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth_zoo/compiler.py", line 386, in import_module
+    new_module = importlib.import_module(name)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/share/ai-lab/scandussio/rebus-grpo/unsloth_compiled_cache/unsloth_compiled_module_siglip.py", line 55, in <module>
+    def normal_cross_entropy_loss(self, hidden_states, labels):
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/torch/__init__.py", line 2424, in fn
+    return compile(
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/torch/__init__.py", line 2443, in compile
+    backend = _TorchCompileInductorWrapper(mode, options, dynamic)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/torch/__init__.py", line 2180, in __init__
+    self.apply_options(options)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/torch/__init__.py", line 2226, in apply_options
+    raise RuntimeError(
+RuntimeError: Unexpected type of attr triton.multi_kernel, got bool should be int
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth_zoo/compiler.py", line 416, in create_new_function
+    spec.loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/tmp/unsloth_compiled_cache/unsloth_compiled_module_siglip.py", line 55, in <module>
+    def normal_cross_entropy_loss(self, hidden_states, labels):
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/torch/__init__.py", line 2424, in fn
+    return compile(
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/torch/__init__.py", line 2443, in compile
+    backend = _TorchCompileInductorWrapper(mode, options, dynamic)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/torch/__init__.py", line 2180, in __init__
+    self.apply_options(options)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/torch/__init__.py", line 2226, in apply_options
+    raise RuntimeError(
+RuntimeError: Unexpected type of attr triton.multi_kernel, got bool should be int
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth_zoo/compiler.py", line 2078, in unsloth_compile_transformers
+    combined_module = create_new_function(
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth_zoo/compiler.py", line 418, in create_new_function
+    raise RuntimeError(f"Direct module loading failed for {name}: {e}")
+RuntimeError: Direct module loading failed for unsloth_compiled_module_siglip: Unexpected type of attr triton.multi_kernel, got bool should be int
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/share/ai-lab/scandussio/rebus-grpo/finetune-phi4.py", line 8, in <module>
+    model, tokenizer = FastLanguageModel.from_pretrained(
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth/models/loader.py", line 322, in from_pretrained
+    return FastModel.from_pretrained(
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth/models/loader.py", line 697, in from_pretrained
+    model_types, supports_sdpa = unsloth_compile_transformers(
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth/models/_utils.py", line 1199, in unsloth_compile_transformers
+    _unsloth_compile_transformers(
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/unsloth_zoo/compiler.py", line 2090, in unsloth_compile_transformers
+    raise RuntimeError(exception)
+RuntimeError: Direct module loading failed for unsloth_compiled_module_siglip: Unexpected type of attr triton.multi_kernel, got bool should be int
+Traceback (most recent call last):
+  File "/u/scandussio/.conda/envs/rebus-env/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1198, in launch_command
+    simple_launcher(args)
+  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/accelerate/commands/launch.py", line 785, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/u/scandussio/.conda/envs/rebus-env/bin/python3.10', 'finetune-phi4.py']' returned non-zero exit status 1.
+DONE!

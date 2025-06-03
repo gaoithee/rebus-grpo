@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH --no-requeue
-#SBATCH --job-name="cs-llama"
-#SBATCH --partition=Main
+#SBATCH --job-name="1000-llama"
+#SBATCH --partition=lovelace
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:a100:1
+#SBATCH --gres=gpu:1g.20gb
 #SBATCH --time=48:00:00
 #SBATCH --mem=500G
-#SBATCH --output=slurm_outputs/grpo-llama-coldstart.out
+#SBATCH --output=slurm_outputs/grpo-llama-1000.out
 #SBATCH --cpus-per-task=8
 
 # Standard preamble for debugging
@@ -21,7 +21,7 @@ source ~/.bashrc
 
 conda init bash
 conda activate rebus-env
-accelerate launch grpo-llama-cs.py
+accelerate launch grpo-llama-1000.py
 
 
 echo "DONE!"

@@ -145,7 +145,7 @@ class UnslothDDPOConfig(DDPOConfig):
     )
     def __init__(
         self,
-        exp_name = 'test-phi',
+        exp_name = 'grpo-llama-4000',
         run_name = '',
         seed = 3407,
         log_with = None,

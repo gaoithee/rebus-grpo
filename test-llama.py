@@ -6,7 +6,7 @@ dtype = None # None for auto detection. Float16 for Tesla T4, V100, Bfloat16 for
 
 model_type = "llama" # llama, phi-3, gemma
 
-model, tokenizer = FastLanguageModel.from_pretrained(model_name = "saracandu/llama-3.1-8b-rebus-solver-adapters-grpo")
+model, tokenizer = FastLanguageModel.from_pretrained(model_name = "saracandu/llama-3.1-8b-rebus-solver-coldstart-grpo")
 FastLanguageModel.for_inference(model)
 
 from datasets import load_dataset
@@ -50,4 +50,4 @@ for ex_idx in tqdm(range(0, len(eval_dataset)), desc="Processing examples"):
 import pandas as pd
 
 df = pd.DataFrame(results)
-df.to_csv("llama_results_step_750.csv")
+df.to_csv("llama_coldstart_grpo_results_step_650.csv")
