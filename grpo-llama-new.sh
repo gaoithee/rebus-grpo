@@ -1,10 +1,10 @@
 #!/bin/bash
 #SBATCH --no-requeue
 #SBATCH --job-name="llama"
-#SBATCH --partition=lovelace
+#SBATCH --partition=Main
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:1g.20gb
+#SBATCH --gres=gpu:a100:1
 #SBATCH --time=48:00:00
 #SBATCH --mem=80G
 #SBATCH --output=slurm_outputs/grpo-llama-new.out
@@ -20,7 +20,7 @@ echo "---------------------------------------------"
 source ~/.bashrc
 
 conda init bash
-conda activate rebus-env
+conda activate vllm_env
 accelerate launch grpo-llama.py
 
 

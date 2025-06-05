@@ -4,7 +4,7 @@
 #SBATCH --partition=lovelace
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:1g.20gb
+#SBATCH --gres=gpu:a100:1
 #SBATCH --time=48:00:00
 #SBATCH --mem=80G
 #SBATCH --output=slurm_outputs/grpo-phi-new.out
@@ -20,7 +20,7 @@ echo "---------------------------------------------"
 source ~/.bashrc
 
 conda init bash
-conda activate rebus-env
+conda activate vllm_env
 accelerate launch grpo-phi.py
 
 

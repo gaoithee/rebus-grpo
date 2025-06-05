@@ -5,7 +5,7 @@ from unsloth import FastLanguageModel
 from datasets import load_dataset
 from trl import GRPOConfig, GRPOTrainer
 from tqdm import tqdm
-from reward_funcs import combined_rewards
+from reward_funcs_new import check_word_guesses, check_first_pass, check_solution_words, check_solution
 # from reward_funcs import exact_match_solution, perc_correct_words_solution, perc_correct_words_defres, words_letters_match_primalet
 import wandb
 wandb.login(key="5a69225ea1d050c9c21f67c2db85febf61fa8fb1")
@@ -22,6 +22,7 @@ model, tokenizer = FastLanguageModel.from_pretrained(
     max_seq_length = max_seq_length,
     dtype = dtype,
     load_in_4bit = load_in_4bit,
+    fast_inference = True,
 )
 
 
@@ -40,6 +41,14 @@ elif model_type in ("phi-3", "gemma"):
 eval_dataset = load_dataset('saracandu/eureka-rebus-grpo', data_files = ['train.csv'], split="train")
 eval_dataset = eval_dataset.select(range(13500))
 eval_dataset = eval_dataset.remove_columns(["Unnamed: 0"])
+
+eval_dataset = eval_dataset.map(lambda x: {  # type: ignore
+    'prompt': [
+        {'role': 'system', 'content': x['system']},
+        {'role': 'user', 'content': x['prompt']}
+    ],
+    'answer': x['answer']
+})
 
 training_args = GRPOConfig(
     learning_rate=5e-6, # può essere sensato tenerlo piccolo perché è già stato fine-tuned
@@ -66,7 +75,7 @@ training_args = GRPOConfig(
 trainer = GRPOTrainer(
     model=model,
     processing_class=tokenizer,
-    reward_funcs=[combined_rewards],
+    reward_funcs=[check_word_guesses, check_first_pass, check_solution_words, check_solution],
     args=training_args,
     train_dataset=eval_dataset,
 )
@@ -76,10 +85,10 @@ print("Training begins...")
 trainer.train()
 print("Training ends!")
 
-merged_model = trainer.model.merge_and_unload()
-merged_model.push_to_hub(
-     "phi3-mini-rebus-solver-grpo-new", private=False, tags=["GRPO", "phi3"]
-)
-tokenizer.push_to_hub("phi3-mini-rebus-solver-grpo-new")
+# merged_model = trainer.model.merge_and_unload()
+# merged_model.push_to_hub(
+#     "phi3-mini-rebus-solver-grpo-new", private=False, tags=["GRPO", "phi3"]
+# )
+# tokenizer.push_to_hub("phi3-mini-rebus-solver-grpo-new")
 
 

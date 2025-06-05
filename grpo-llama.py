@@ -36,7 +36,7 @@ elif model_type in ("phi-3", "gemma"):
 
 
 
-eval_dataset = load_dataset('saracandu/eureka-rebus-grpo', data_files = ['test.csv'], split="train")
+eval_dataset = load_dataset('saracandu/eureka-rebus-grpo', data_files = ['train.csv'], split="train")
 eval_dataset = eval_dataset.select(range(13500))
 eval_dataset = eval_dataset.remove_columns(['Unnamed: 0'])
 
@@ -57,9 +57,9 @@ training_args = GRPOConfig(
     lr_scheduler_type="cosine",
     optim="paged_adamw_8bit", # risparmia in memoria & aumenta la velocità
     logging_steps=50,
-    per_device_train_batch_size=1,
-    gradient_accumulation_steps=1,  # Increase to 4 for smoother training
-    num_generations=2,  # Decrease if out of memory
+    per_device_train_batch_size=12,
+    gradient_accumulation_steps=6,  # Increase to 4 for smoother training
+    num_generations=4,  # Decrease if out of memory
     max_prompt_length=256,
     max_completion_length=500,
     num_train_epochs = 1, # Set to 1 for a full training run
