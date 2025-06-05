@@ -5,7 +5,7 @@ from unsloth import FastLanguageModel
 from datasets import load_dataset
 from trl import GRPOConfig, GRPOTrainer
 from tqdm import tqdm
-from reward_funcs import combined_rewards
+from reward_funcs_new import check_word_guesses, check_first_pass, check_solution_words, check_solution
 import wandb
 wandb.login(key="5a69225ea1d050c9c21f67c2db85febf61fa8fb1")
 
@@ -37,8 +37,7 @@ elif model_type in ("phi-3", "gemma"):
 
 
 eval_dataset = load_dataset('saracandu/eureka-rebus-grpo', data_files = ['test.csv'], split="train")
-eval_dataset = eval_dataset.select(range(13))
-
+eval_dataset = eval_dataset.select(range(13500))
 eval_dataset = eval_dataset.remove_columns(['Unnamed: 0'])
 
 eval_dataset = eval_dataset.map(lambda x: {  # type: ignore
@@ -74,7 +73,7 @@ training_args = GRPOConfig(
 trainer = GRPOTrainer(
     model=model,
     processing_class=tokenizer,
-    reward_funcs=[combined_rewards],
+    reward_funcs=[check_word_guesses, check_first_pass, check_solution_words, check_solution],
     args=training_args,
     train_dataset=eval_dataset,
 )
@@ -84,10 +83,10 @@ print("Training begins...")
 trainer.train()
 print("Training ends!")
 
-merged_model = trainer.model.merge_and_unload()
-merged_model.push_to_hub(
-    "llama-3.1-8b-rebus-solver-grpo-new", private=False, tags=["GRPO", "llama"]
-)
-tokenizer.push_to_hub("llama-3.1-8b-rebus-solver-grpo-new")
+# merged_model = trainer.model.merge_and_unload()
+# merged_model.push_to_hub(
+#    "llama-3.1-8b-rebus-solver-grpo-new", private=False, tags=["GRPO", "llama"]
+# )
+# tokenizer.push_to_hub("llama-3.1-8b-rebus-solver-grpo-new")
 
 

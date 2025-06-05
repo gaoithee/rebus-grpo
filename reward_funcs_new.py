@@ -1,4 +1,5 @@
 import re
+import numpy as np
 
 regex_word_guess = '- \[.* = (.*)'
 regex_firstpass = 'Prima lettura: (.*)'
@@ -48,9 +49,10 @@ def split_words_and_letters(tokens):
 
 def check_word_guesses(prompts, completions, answer, **kwargs):
     completions = [completions[i][0]['content'] for i in range(len(completions))]
-    gold_dict = parse_generation(answer)
+    gold_dict = parse_generation(str(answer[0]))
     predicted_dicts = [parse_generation(c) for c in completions]
-    
+#    print("GOLD: ", gold_dict)
+#    print("PRED: ", predicted_dicts)
     gold_word_guesses = gold_dict["word_guesses"].lower().split(";")
 
     scores = []
@@ -67,11 +69,12 @@ def check_word_guesses(prompts, completions, answer, **kwargs):
             else:
                 pwd_score -= 1
         scores.append(pwd_score)
+#     print("word guesses: ", scores)
     return scores
 
 def check_first_pass(prompts, completions, answer, **kwargs):
     completions = [completions[i][0]['content'] for i in range(len(completions))]
-    gold_dict = parse_generation(answer)
+    gold_dict = parse_generation(str(answer[0]))
     predicted_dicts = [parse_generation(c) for c in completions]
     
     gold_first_pass = split_words_and_letters(gold_dict["first_pass"].split(" "))
@@ -93,11 +96,12 @@ def check_first_pass(prompts, completions, answer, **kwargs):
                 cfp_score -= 2
         
         scores.append(cfp_score)
+#    print("first pass: ", scores)
     return scores
 
 def check_solution_words(prompts, completions, answer, **kwargs):
     completions = [completions[i][0]['content'] for i in range(len(completions))]
-    gold_dict = parse_generation(answer)
+    gold_dict = parse_generation(str(answer[0]))
     predicted_dicts = [parse_generation(c) for c in completions]
     gold_solution_words = gold_dict["solution_words"].lower().split(";")
 
@@ -122,13 +126,13 @@ def check_solution_words(prompts, completions, answer, **kwargs):
                 score -= np.abs(len(pw) - len(gw))
 
         scores.append(score)
-
+#    print("solution words: ", scores)
     return scores
 
 
 def check_solution(prompts, completions, answer, **kwargs):
     completions = [completions[i][0]['content'] for i in range(len(completions))]
-    gold_dict = parse_generation(answer)
+    gold_dict = parse_generation(str(answer[0]))
     predicted_dicts = [parse_generation(c) for c in completions]
     gold_solution = gold_dict["solution"].lower()
 
@@ -144,5 +148,5 @@ def check_solution(prompts, completions, answer, **kwargs):
             score -= 5
 
         scores.append(score)
-
+#    print("solution: ", scores)
     return scores
