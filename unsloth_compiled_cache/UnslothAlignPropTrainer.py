@@ -1,8 +1,8 @@
 """
-2025.5.6
-2025.5.6
-4.51.3
-0.15.2
+2025.5.11
+2025.5.9
+4.52.4
+0.18.1
 __UNSLOTH_VERSIONING__
 """
 from torch import Tensor
@@ -20,7 +20,7 @@ import torch
 import numpy as np
 from contextlib import nullcontext
 from torch.nn import functional as F
-from transformers import DataCollatorForSeq2Seq, DataCollatorForLanguageModeling
+from transformers import DataCollatorForSeq2Seq, DataCollatorForLanguageModeling as TransformersDataCollatorForLanguageModeling
 
 torch_compile_options = {
     "epilogue_fusion"   : True,
@@ -129,7 +129,7 @@ class UnslothAlignPropConfig(AlignPropConfig):
     )
     def __init__(
         self,
-        exp_name = '',
+        exp_name = 'grpo-llama',
         run_name = '',
         seed = 3407,
         log_with = None,

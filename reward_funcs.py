@@ -227,7 +227,7 @@ def words_letters_match_primalet(prompts, completions, answer, **kwargs):
 
 
 
-def combined_rewards(prompts, completions, answer, **kwargs):
+def combined_rewards_broken(prompts, completions, answer, **kwargs):
 
     # Parse once
     gold_dict = parse_generation(answer)
@@ -293,3 +293,241 @@ def combined_rewards(prompts, completions, answer, **kwargs):
 
     # Return a list of scores
     return all_scores  # Return the list of scores
+
+def combined_rewards(prompts, completions, answer, **kwargs):
+    # Parse once
+    completions = [completions[i][0]['content'] for i in range(len(completions))]
+    # print(answer)
+    print("------")
+    print(completions)
+    print("------")
+    gold_dict = parse_generation(str(answer[0]))
+    predicted_dicts = [parse_generation(c) for c in completions]
+    print(gold_dict)
+    print(predicted_dicts)
+
+    # Prepare gold values
+    gold_solution = gold_dict["solution"].lower()
+    gold_solution_words = gold_dict["solution_words"].lower().split(";")
+    gold_word_guesses = gold_dict["word_guesses"].lower().split(";")
+    gold_first_pass = split_words_and_letters(gold_dict["first_pass"].split(" "))
+
+    all_scores = []
+
+    for pred in predicted_dicts:
+        pred_solution = pred["solution"].lower()
+        pred_solution_words = pred["solution_words"].lower().split(";")
+        pred_word_guesses = pred["word_guesses"].lower().split(";")
+        pred_first_pass = split_words_and_letters(pred["first_pass"].split(" "))
+
+        # --- exact_match_solution ---
+        if pred_solution == gold_solution:
+            exact_match = 2.0
+        else:
+            exact_match = 0.0  # Fallback for None case
+
+        # --- perc_correct_words_solution ---
+        pcw_score = 0
+        if len(pred_solution_words) == 0:
+            pcw_score = 0.0
+        else:
+            for pw, gw in zip(pred_solution_words, gold_solution_words):
+                if pw == gw:
+                    pcw_score += 2
+                if len(pw) == len(gw):
+                    pcw_score += 0.5
+            pcw_score /= len(gold_word_guesses) if gold_word_guesses else 1
+
+        # --- perc_correct_words_defres ---
+        pwd_score = 0
+        if len(pred_word_guesses) == 0:
+            pwd_score = -0.0
+        else:
+            for pw, gw in zip(pred_word_guesses, gold_word_guesses):
+                if pw == gw:
+                    pwd_score += 2
+                if len(pw) == len(gw):
+                    pwd_score += 0.5
+            pwd_score /= len(gold_word_guesses) if gold_word_guesses else 1
+
+        # --- words_letters_match_primalet ---
+        # Words
+        word_score = 0
+        if len(gold_first_pass["words"]) > 0:
+            for pw, gw in zip(pred_first_pass["words"], gold_first_pass["words"]):
+                if pw == gw:
+                    word_score += 2
+                elif len(pw) == len(gw):
+                    word_score += 0.5
+            word_score /= len(gold_first_pass["words"])
+
+        # Letters
+        letter_score = 0
+        if len(gold_first_pass["letters"]) > 0:
+            for pl, gl in zip(pred_first_pass["letters"], gold_first_pass["letters"]):
+                if pl.lower().replace(" ", "") == gl.lower().replace(" ", ""):
+                    letter_score += 1
+            letter_score /= len(gold_first_pass["letters"])
+
+        primalet_score = word_score + letter_score
+
+        # Collect all scores into a list
+        print(f"Exact match: {exact_match}")
+        print(f"Percentage correct words solution: {pcw_score}")
+        print(f"Percentage correct words def_res: {pwd_score}")
+        print(f"PrimaLet score: {primalet_score}")
+        print("--------")
+        score = exact_match + pcw_score + pwd_score + primalet_score
+        all_scores.append(score)
+        print(score)
+
+    return all_scores
+
+
+# def combined_rewards_old(prompts, completions, answer, **kwargs):
+    # Parse once
+#    completions = [completions[i][0]['content'] for i in range(len(completions))]
+#    print(answer)
+#    print("------")
+#    print(completions)
+#    print("------")
+#    gold_dict = parse_generation(str(answer[0]))
+#    predicted_dicts = [parse_generation(c) for c in completions]
+#    print(gold_dict)
+#    print(predicted_dicts)
+
+    # Prepare gold values
+#    gold_solution = gold_dict["solution"].lower()
+#    gold_solution_words = gold_dict["solution_words"].lower().split(";")
+#    gold_word_guesses = gold_dict["word_guesses"].lower().split(";")
+#    gold_first_pass = split_words_and_letters(gold_dict["first_pass"].split(" "))
+
+#    all_scores = []
+
+#    for pred in predicted_dicts:
+#        pred_solution = pred["solution"].lower()
+#        pred_solution_words = pred["solution_words"].lower().split(";")
+#        pred_word_guesses = pred["word_guesses"].lower().split(";")
+#        pred_first_pass = split_words_and_letters(pred["first_pass"].split(" "))
+
+        # --- exact_match_solution ---
+#        exact_match = 2.0 if pred_solution == gold_solution
+#        exact_match = -5.0 if pred_solution == None
+
+        # --- perc_correct_words_solution ---
+#        pcw_score = 0
+#        pwc_score = -5.0 if len(pred_solution_words) == 0
+#        for pw, gw in zip(pred_solution_words, gold_solution_words):
+#            if pw == gw:
+#                pcw_score += 2
+#            if len(pw) == len(gw):
+#                pcw_score += 0.5
+#        pcw_score /= len(gold_word_guesses) if gold_word_guesses else 1
+
+        # --- perc_correct_words_defres ---
+#        pwd_score = 0
+#        pwd_score = -5.0 if len(pred_word_guesses) == 0
+#        for pw, gw in zip(pred_word_guesses, gold_word_guesses):
+#            if pw == gw:
+#                pwd_score += 2
+#            if len(pw) == len(gw):
+#                pwd_score += 0.5
+#        pwd_score /= len(gold_word_guesses) if gold_word_guesses else 1
+
+        # --- words_letters_match_primalet ---
+        # Words
+#        word_score = 0
+#        for pw, gw in zip(pred_first_pass["words"], gold_first_pass["words"]):
+#            if pw == gw:
+#                word_score += 2
+#            elif len(pw) == len(gw):
+#                word_score += 0.5
+#            word_score /= len(gold_first_pass["words"]) if gold_first_pass["words"] else 1
+
+        # Letters
+#        letter_score = 0
+#        for pl, gl in zip(pred_first_pass["letters"], gold_first_pass["letters"]):
+#            if pl.lower().replace(" ", "") == gl.lower().replace(" ", ""):
+#                letter_score += 1
+#        letter_score /= len(gold_first_pass["letters"]) if gold_first_pass["letters"] else 1
+#        primalet_score = word_score + letter_score
+        # Collect all scores into a list
+#        print(f"Exact match: ", exact_match)
+#        print(f"Percentage correct words solution: ", pcw_score)
+#        print(f"Percentage correct words def_res: ", pwd_score)
+#        print(f"PrimaLet score: ", primalet_score)
+#        print("--------")
+#        score = exact_match + pcw_score + pwd_score + primalet_score
+#        all_scores.append(score)
+#        print(score)
+#    return all_scores
+
+
+def combined_rewards_gab(prompts, completions, answer, **kwargs):
+    print(answer)
+    print("------")
+    print(completions)
+    print("------")
+    # Parse once
+    gold_dict = parse_generation(str(answer[0]))
+    print(gold_dict)
+    predicted_dicts = [parse_generation(c) for c in completions]
+    print(predicted_dicts)
+
+    # Prepare gold values
+    gold_solution = gold_dict["solution"].lower()
+    gold_solution_words = gold_dict["solution_words"].lower().split(";")
+    gold_word_guesses = gold_dict["word_guesses"].lower().split(";")
+    gold_first_pass = split_words_and_letters(gold_dict["first_pass"].split(" "))
+
+    all_scores = []
+
+    for pred in predicted_dicts:
+        pred_solution = pred["solution"].lower()
+        pred_solution_words = pred["solution_words"].lower().split(";")
+        pred_word_guesses = pred["word_guesses"].lower().split(";")
+        pred_first_pass = split_words_and_letters(pred["first_pass"].split(" "))
+
+        # --- exact_match_solution ---
+        exact_match = 5.0 if pred_solution == gold_solution and pred_solution != "" else 0.0
+
+        # --- perc_correct_words_solution ---
+        pcw_score = 0
+        for pw, gw in zip(pred_solution_words, gold_solution_words):
+            if pw == gw:
+                pcw_score += 2
+            elif len(pw) == len(gw):
+                pcw_score += 0.2
+            else:
+                pcw_score -= 0.25
+
+        # --- perc_correct_words_defres ---
+        pwd_score = 0
+        for pw, gw in zip(pred_word_guesses, gold_word_guesses):
+            if pw == gw:
+                pwd_score += 1
+            elif len(pw) == len(gw):
+                pwd_score += 0.1
+            else:
+                pwd_score -= 0.5
+
+        # --- words_letters_match_primalet ---
+        # Words
+        primalet_score = 0
+        for pw, gw in zip(pred_first_pass["words"], pred_word_guesses):
+            if pw == gw:
+                primalet_score += 1
+            else:
+                primalet_score -= 1            
+
+
+        # Collect all scores into a list
+        # print(f"Exact match: ", exact_match)
+        # print(f"Percentage correct words solution: ", pcw_score)
+        # print(f"Percentage correct words def_res: ", pwd_score)
+        # print(f"PrimaLet score: ", primalet_score)
+        # print("--------")
+        score = exact_match + pcw_score + pwd_score + primalet_score
+        all_scores.append(score)
+
+    return all_scores

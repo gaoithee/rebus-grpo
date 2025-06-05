@@ -1,7 +1,7 @@
 ---------------------------------------------
-SLURM job ID:        15623
-SLURM job node list: lovelace-02
-DATE:                Mon Jun  2 10:35:13 PM CEST 2025
+SLURM job ID:        15653
+SLURM job node list: lovelace-01
+DATE:                Wed Jun  4 12:49:43 PM CEST 2025
 ---------------------------------------------
 no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/condabin/conda
 no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/conda
@@ -22,21 +22,4 @@ The following values were not passed to `accelerate launch` and had defaults use
 	`--mixed_precision` was set to a value of `'no'`
 	`--dynamo_backend` was set to a value of `'no'`
 To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
-🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
-🦥 Unsloth Zoo will now patch everything to make training faster!
-INFO 06-02 22:35:30 __init__.py:190] Automatically detected platform cuda.
-Traceback (most recent call last):
-  File "/share/ai-lab/scandussio/rebus-grpo/grpo-llama-4000.py", line 8, in <module>
-    from reward_funcs_coldstart import combined_rewards
-ModuleNotFoundError: No module named 'reward_funcs_coldstart'
-Traceback (most recent call last):
-  File "/u/scandussio/.conda/envs/rebus-env/bin/accelerate", line 8, in <module>
-    sys.exit(main())
-  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
-    args.func(args)
-  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1198, in launch_command
-    simple_launcher(args)
-  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/accelerate/commands/launch.py", line 785, in simple_launcher
-    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
-subprocess.CalledProcessError: Command '['/u/scandussio/.conda/envs/rebus-env/bin/python3.10', 'grpo-llama-4000.py']' returned non-zero exit status 1.
-DONE!
+slurmstepd: error: *** JOB 15653 ON lovelace-01 CANCELLED AT 2025-06-04T12:49:51 ***

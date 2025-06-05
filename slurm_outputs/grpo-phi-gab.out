@@ -1,0 +1,6 @@
+---------------------------------------------
+SLURM job ID:        15949
+SLURM job node list: babbage
+DATE:                Thu Jun  5 09:45:29 AM CEST 2025
+---------------------------------------------
+slurmstepd: error: *** JOB 15949 ON babbage CANCELLED AT 2025-06-05T09:45:32 ***

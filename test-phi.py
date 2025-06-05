@@ -6,18 +6,16 @@ dtype = None # None for auto detection. Float16 for Tesla T4, V100, Bfloat16 for
 
 model_type = "phi-3" # llama, phi-3, gemma
 
-model_type = "phi-3" # llama, phi-3, gemma
 model, tokenizer = FastLanguageModel.from_pretrained(
-    model_name = "gsarti/phi3-mini-rebus-solver-adapters",
+    model_name = "saracandu/phi3-mini-rebus-solver-adapters-grpo",
     max_seq_length = 1248,
     load_in_4bit = True,
-    revision="4d2d43ee757bc1cc007629f58558876a95b5ae07" # preso da https://huggingface.co/gsarti/phi3-mini-rebus-solver-adapters/commits/main
 )
 FastLanguageModel.for_inference(model)
 
 from datasets import load_dataset
 
-eval_dataset = load_dataset('gsarti/eureka-rebus', 'llm_sft', data_files=["id_test.jsonl", "ood_test.jsonl"], split = "train")
+eval_dataset = load_dataset('gsarti/eureka-rebus', 'llm_sft', data_files=["ood_test.jsonl"], split = "train", revision="2bb3aed7f23b13e381ae26fdbfb9aad3bde9ea90")
 
 import re
 import pandas as pd
@@ -56,4 +54,4 @@ for ex_idx in tqdm(range(0, len(eval_dataset)), desc="Processing examples"):
 import pandas as pd
 
 df = pd.DataFrame(results)
-df.to_csv("phi3_mini_results_step_4000.csv")
+df.to_csv("phi3_mini_grpo_results_step_5070.csv")

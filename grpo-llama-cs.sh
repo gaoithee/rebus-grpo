@@ -6,7 +6,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1g.20gb
 #SBATCH --time=48:00:00
-#SBATCH --mem=500G
+#SBATCH --mem=64G
 #SBATCH --output=slurm_outputs/grpo-llama-1000.out
 #SBATCH --cpus-per-task=8
 

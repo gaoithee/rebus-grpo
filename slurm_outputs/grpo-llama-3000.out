@@ -1,7 +1,7 @@
 ---------------------------------------------
-SLURM job ID:        15622
+SLURM job ID:        15651
 SLURM job node list: lovelace-02
-DATE:                Mon Jun  2 10:34:49 PM CEST 2025
+DATE:                Tue Jun  3 05:21:48 PM CEST 2025
 ---------------------------------------------
 no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/condabin/conda
 no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/conda
@@ -24,19 +24,27 @@ The following values were not passed to `accelerate launch` and had defaults use
 To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
 🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
 🦥 Unsloth Zoo will now patch everything to make training faster!
-INFO 06-02 22:35:07 __init__.py:190] Automatically detected platform cuda.
-Traceback (most recent call last):
-  File "/share/ai-lab/scandussio/rebus-grpo/grpo-llama-3000.py", line 8, in <module>
-    from reward_funcs_coldstart import combined_rewards
-ModuleNotFoundError: No module named 'reward_funcs_coldstart'
-Traceback (most recent call last):
-  File "/u/scandussio/.conda/envs/rebus-env/bin/accelerate", line 8, in <module>
-    sys.exit(main())
-  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
-    args.func(args)
-  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1198, in launch_command
-    simple_launcher(args)
-  File "/u/scandussio/.conda/envs/rebus-env/lib/python3.10/site-packages/accelerate/commands/launch.py", line 785, in simple_launcher
-    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
-subprocess.CalledProcessError: Command '['/u/scandussio/.conda/envs/rebus-env/bin/python3.10', 'grpo-llama-3000.py']' returned non-zero exit status 1.
-DONE!
+INFO 06-03 17:22:09 __init__.py:190] Automatically detected platform cuda.
+wandb: Appending key for api.wandb.ai to your netrc file: /u/scandussio/.netrc
+wandb: Currently logged in as: saracandussio (saracandussio-universit-degli-studi-di-trieste) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+Unsloth 2025.5.6 patched 32 layers with 32 QKV layers, 32 O layers and 32 MLP layers.
+wandb: Tracking run with wandb version 0.19.11
+wandb: Run data is saved locally in /share/ai-lab/scandussio/rebus-grpo/wandb/run-20250603_172230-670n8ye6
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run copper-serenity-1
+wandb: ⭐️ View project at https://wandb.ai/saracandussio-universit-degli-studi-di-trieste/llama-GRPO-3000
+wandb: 🚀 View run at https://wandb.ai/saracandussio-universit-degli-studi-di-trieste/llama-GRPO-3000/runs/670n8ye6
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 13,500 | Num Epochs = 1 | Total steps = 300
+O^O/ \_/ \    Batch size per device = 12 | Gradient accumulation steps = 6
+\        /    Data Parallel GPUs = 1 | Total batch size (12 x 6 x 1) = 72
+ "-____-"     Trainable parameters = 41,943,040/8,000,000,000 (0.52% trained)
+wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
+==((====))==  Unsloth 2025.5.6: Fast Llama patching. Transformers: 4.51.3. vLLM: 0.7.2.
+   \\   /|    NVIDIA A100 80GB PCIe MIG 1g.20gb. Num GPUs = 1. Max memory: 19.5 GB. Platform: Linux.
+O^O/ \_/ \    Torch: 2.5.1+cu124. CUDA: 8.0. CUDA Toolkit: 12.4. Triton: 3.1.0
+\        /    Bfloat16 = TRUE. FA [Xformers = 0.0.28.post3. FA2 = False]
+ "-____-"     Free license: http://github.com/unslothai/unsloth
+Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+Training begins...
+  0%|          | 0/300 [00:00<?, ?it/s]  0%|          | 1/300 [17:47<88:40:40, 1067.69s/it]  1%|          | 2/300 [35:14<87:22:23, 1055.51s/it]  1%|          | 3/300 [52:39<86:40:14, 1050.55s/it]  1%|▏         | 4/300 [1:10:04<86:11:49, 1048.34s/it]  2%|▏         | 5/300 [1:27:27<85:45:41, 1046.58s/it]  2%|▏         | 6/300 [1:44:52<85:25:55, 1046.11s/it]  2%|▏         | 7/300 [2:02:17<85:05:37, 1045.52s/it]  3%|▎         | 8/300 [2:19:43<84:49:02, 1045.69s/it]  3%|▎         | 9/300 [2:37:06<84:27:41, 1044.89s/it]  3%|▎         | 10/300 [2:54:31<84:10:43, 1044.98s/it]  4%|▎         | 11/300 [3:11:56<83:52:50, 1044.88s/it]  4%|▍         | 12/300 [3:29:20<83:34:34, 1044.70s/it]  4%|▍         | 13/300 [3:46:45<83:16:56, 1044.66s/it]  5%|▍         | 14/300 [4:04:10<83:00:26, 1044.85s/it]  5%|▌         | 15/300 [4:21:36<82:44:27, 1045.15s/it]  5%|▌         | 16/300 [4:39:03<82:29:35, 1045.69s/it]  6%|▌         | 17/300 [4:56:30<82:14:58, 1046.28s/it]  6%|▌         | 18/300 [5:13:58<81:59:15, 1046.65s/it]  6%|▋         | 19/300 [5:31:22<81:37:42, 1045.77s/it]  7%|▋         | 20/300 [5:48:48<81:21:22, 1046.01s/it]  7%|▋         | 21/300 [6:06:15<81:05:20, 1046.31s/it]  7%|▋         | 22/300 [6:23:41<80:47:53, 1046.31s/it]  8%|▊         | 23/300 [6:41:07<80:28:45, 1045.94s/it]  8%|▊         | 24/300 [6:58:32<80:11:13, 1045.92s/it]  8%|▊         | 25/300 [7:15:59<79:54:43, 1046.12s/it]  9%|▊         | 26/300 [7:33:25<79:36:39, 1045.98s/it]  9%|▉         | 27/300 [7:50:52<79:20:54, 1046.35s/it]  9%|▉         | 28/300 [8:08:17<79:01:10, 1045.85s/it] 10%|▉         | 29/300 [8:25:44<78:45:51, 1046.32s/it] 10%|█         | 30/300 [8:43:12<78:30:39, 1046.81s/it] 10%|█         | 31/300 [9:00:41<78:15:45, 1047.38s/it] 11%|█         | 32/300 [9:18:10<78:01:07, 1048.01s/it] 11%|█         | 33/300 [9:35:37<77:42:41, 1047.80s/it] 11%|█▏        | 34/300 [9:53:05<77:24:35, 1047.65s/it] 12%|█▏        | 35/300 [10:10:32<77:06:10, 1047.44s/it] 12%|█▏        | 36/300 [10:28:00<76:49:18, 1047.57s/it] 12%|█▏        | 37/300 [10:45:27<76:31:48, 1047.56s/it] 13%|█▎        | 38/300 [11:02:54<76:14:06, 1047.50s/it] 13%|█▎        | 39/300 [11:20:20<75:54:13, 1046.95s/it] 13%|█▎        | 40/300 [11:37:48<75:37:37, 1047.14s/it] 14%|█▎        | 41/300 [11:55:15<75:20:26, 1047.21s/it] 14%|█▍        | 42/300 [12:12:42<75:02:09, 1047.01s/it] 14%|█▍        | 43/300 [12:30:07<74:43:02, 1046.62s/it] 15%|█▍        | 44/300 [12:47:36<74:27:37, 1047.10s/it] 15%|█▌        | 45/300 [13:05:02<74:09:24, 1046.92s/it] 15%|█▌        | 46/300 [13:22:27<73:49:46, 1046.40s/it] 16%|█▌        | 47/300 [13:39:54<73:32:38, 1046.47s/it] 16%|█▌        | 48/300 [13:57:21<73:15:34, 1046.57s/it] 16%|█▋        | 49/300 [14:14:48<72:59:38, 1046.93s/it] 17%|█▋        | 50/300 [14:32:13<72:39:24, 1046.26s/it]                                                         17%|█▋        | 50/300 [14:32:13<72:39:24, 1046.26s/it] 17%|█▋        | 51/300 [14:49:40<72:22:39, 1046.43s/it] 17%|█▋        | 52/300 [15:07:07<72:06:31, 1046.74s/it] 18%|█▊        | 53/300 [15:24:36<71:51:00, 1047.21s/it] 18%|█▊        | 54/300 [15:42:05<71:36:23, 1047.90s/it] 18%|█▊        | 55/300 [15:59:32<71:16:57, 1047.42s/it] 19%|█▊        | 56/300 [16:16:59<70:59:28, 1047.41s/it] 19%|█▉        | 57/300 [16:34:27<70:42:13, 1047.46s/it] 19%|█▉        | 58/300 [16:51:53<70:23:59, 1047.27s/it] 20%|█▉        | 59/300 [17:09:20<70:05:30, 1047.02s/it] 20%|██        | 60/300 [17:26:46<69:47:37, 1046.91s/it] 20%|██        | 61/300 [17:44:13<69:29:26, 1046.72s/it] 21%|██        | 62/300 [18:01:40<69:12:10, 1046.77s/it] 21%|██        | 63/300 [18:19:07<68:55:31, 1046.97s/it] 21%|██▏       | 64/300 [18:36:35<68:39:40, 1047.38s/it] 22%|██▏       | 65/300 [18:54:01<68:20:45, 1047.00s/it] 22%|██▏       | 66/300 [19:11:28<68:02:13, 1046.72s/it]slurmstepd: error: *** JOB 15651 ON lovelace-02 CANCELLED AT 2025-06-04T12:49:45 ***
