@@ -59,7 +59,7 @@ def check_word_guesses(prompts, completions, answer, **kwargs):
 
     for pred in predicted_dicts:
         pred_word_guesses = pred["word_guesses"].lower().split(";")    
-        if pred_word_guesses is None or len(pred_word_guesses) == 0:
+        if pred_word_guesses=='' or len(pred_word_guesses) == 0:
             scores.append(-10)
             continue
    
@@ -79,18 +79,19 @@ def check_first_pass(prompts, completions, answer, **kwargs):
     completions = [completions[i][0]['content'] for i in range(len(completions))]
     gold_dict = parse_generation(str(answer[0]))
     predicted_dicts = [parse_generation(c) for c in completions]
-    
+
     gold_first_pass = split_words_and_letters(gold_dict["first_pass"].split(" "))
     
     scores = []
 
     for pred in predicted_dicts:
+        if pred['first_pass'] == '' or len(pred['first_pass']) == 0:
+            scores.append(-10)
+            continue
+
         pred_word_guesses = pred["word_guesses"].lower().split(";")
         pred_first_pass = split_words_and_letters(pred["first_pass"].split(" "))
-        
-        if pred_first_pass is None or len(pred_first_pass) == 0:
-            scores.append(-10)
-            continue                
+
         cfp_score = 0
 
         for pw, pfp, gfp in zip(pred_word_guesses, pred_first_pass["words"], gold_first_pass["words"]):
@@ -118,14 +119,14 @@ def check_solution_words(prompts, completions, answer, **kwargs):
         
         score = 0
 
-        if pred_solution_words is None or len(pred_solution_words) == 0:
+        if len(pred_solution_words) == 0:
             scores.append(-10)
             continue
 
         if len(gold_solution_words) == len(pred_solution_words):
             score += 1
         else:
-            score -= 3 * np.abs(len(gold_solution_words) - len(pred_solution_words))
+            score -= 3 * int(np.abs(len(gold_solution_words) - len(pred_solution_words)))
         
         for pw, gw in zip(pred_solution_words, gold_solution_words):
             if pw == gw:
@@ -133,7 +134,7 @@ def check_solution_words(prompts, completions, answer, **kwargs):
             elif len(pw) == len(gw):
                 score += 0.2
             else:
-                score -= np.abs(len(pw) - len(gw))
+                score -= int(np.abs(len(pw) - len(gw)))
 
         scores.append(score)
     print("solution words: ", scores)
@@ -152,12 +153,12 @@ def check_solution(prompts, completions, answer, **kwargs):
         score = 0
         pred_solution = pred["solution"].lower()
 
-        if pred_solution is None:
+        if pred_solution=='':
            scores.append(-10)
            continue
 
         if pred_solution == gold_solution:
-            score += 5
+            score += 10
         else:
             score -= 5
 
