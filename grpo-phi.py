@@ -5,10 +5,10 @@ from unsloth import FastLanguageModel
 from datasets import load_dataset
 from trl import GRPOConfig, GRPOTrainer
 from tqdm import tqdm
+# attenzione che qua ti printa tutto!
+# se vuoi vedere qualcosa di sensato, metti batch_size = 1 e gradient_acc_steps = 1!
 from reward_funcs_new import check_word_guesses, check_first_pass, check_solution_words, check_solution
-# from reward_funcs import exact_match_solution, perc_correct_words_solution, perc_correct_words_defres, words_letters_match_primalet
 import wandb
-wandb.login(key="5a69225ea1d050c9c21f67c2db85febf61fa8fb1")
 
 
 max_seq_length = 1248 # Choose any! We auto support RoPE Scaling internally!
@@ -18,11 +18,12 @@ load_in_4bit = True # Use 4bit quantization to reduce memory usage. Can be False
 
 model_type = "phi-3" # llama, phi-3, gemma
 model, tokenizer = FastLanguageModel.from_pretrained(
-    model_name = "gsarti/phi3-mini-rebus-solver-adapters", # MODEL OR ADAPTER FOLDER
+    model_name = "gsarti/phi3-mini-rebus-solver-adapters",
     max_seq_length = max_seq_length,
-    dtype = dtype,
-    load_in_4bit = load_in_4bit,
-    fast_inference = True,
+    load_in_4bit = False, # altrimenti crasha 
+    fast_inference = True, 
+    enable_prefix_caching = False,  # obbligati
+    disable_sliding_window = False  # obbligati
 )
 
 
@@ -39,16 +40,17 @@ elif model_type in ("phi-3", "gemma"):
 
 
 eval_dataset = load_dataset('saracandu/eureka-rebus-grpo', data_files = ['train.csv'], split="train")
-eval_dataset = eval_dataset.select(range(13500))
-eval_dataset = eval_dataset.remove_columns(["Unnamed: 0"])
+eval_dataset = eval_dataset.select(range(13500)) # potrei rimettere tutto il dataset una volta che abbiamo una run decente
+eval_dataset = eval_dataset.remove_columns(["Unnamed: 0"]) # pasticcio mio, correggerò
 
-eval_dataset = eval_dataset.map(lambda x: {  # type: ignore
+eval_dataset = eval_dataset.map(lambda x: { 
     'prompt': [
         {'role': 'system', 'content': x['system']},
         {'role': 'user', 'content': x['prompt']}
     ],
     'answer': x['answer']
 })
+
 
 training_args = GRPOConfig(
     learning_rate=5e-6, # può essere sensato tenerlo piccolo perché è già stato fine-tuned
@@ -60,11 +62,12 @@ training_args = GRPOConfig(
     optim="paged_adamw_8bit", # risparmia in memoria & aumenta la velocità
     logging_steps=50,
     per_device_train_batch_size=12,
-    gradient_accumulation_steps=6,  # Increase to 4 for smoother training
-    num_generations=4,  # Decrease if out of memory
+    gradient_accumulation_steps=6,
+    num_generations=4,  # 6 mi sembrava troppo
+    # 12 * 6 -> 72 batch_size ( -> 750 steps)
     max_prompt_length=256,
-    max_completion_length=500,
-    num_train_epochs = 1, # Set to 1 for a full training run
+    max_completion_length=500, # uguale alle tue richieste lato SFT
+    num_train_epochs = 1, # non voglio che overfitti
     save_steps=50,
     max_grad_norm=0.1,
     report_to = ["wandb"],

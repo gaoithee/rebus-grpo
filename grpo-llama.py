@@ -7,7 +7,6 @@ from trl import GRPOConfig, GRPOTrainer
 from tqdm import tqdm
 from reward_funcs_new import check_word_guesses, check_first_pass, check_solution_words, check_solution
 import wandb
-wandb.login(key="5a69225ea1d050c9c21f67c2db85febf61fa8fb1")
 
 
 max_seq_length = 1248 # Choose any! We auto support RoPE Scaling internally!
