@@ -49,20 +49,17 @@ def split_words_and_letters(tokens):
 
 def check_word_guesses(prompts, completions, answer, **kwargs):
     completions = [completions[i][0]['content'] for i in range(len(completions))]
-    gold_dict = parse_generation(str(answer[0]))
+    gold_dicts = [parse_generation(str(a)) for a in answer]
     predicted_dicts = [parse_generation(c) for c in completions]
-    print("GOLD: ", gold_dict)
+    print("GOLD: ", gold_dicts)
     print("PRED: ", predicted_dicts)
-    gold_word_guesses = gold_dict["word_guesses"].lower().split(";")
-
     scores = []
-
-    for pred in predicted_dicts:
+    for gold, pred in zip(gold_dicts, predicted_dicts):
+        gold_word_guesses = gold["word_guesses"].lower().split(";")
         pred_word_guesses = pred["word_guesses"].lower().split(";")    
-        if pred_word_guesses=='' or len(pred_word_guesses) == 0:
+        if pred_word_guesses == '' or len(pred_word_guesses) == 0:
             scores.append(-10)
             continue
-   
         pwd_score = 0
         for pw, gw in zip(pred_word_guesses, gold_word_guesses):
             if pw == gw:
@@ -77,58 +74,52 @@ def check_word_guesses(prompts, completions, answer, **kwargs):
 
 def check_first_pass(prompts, completions, answer, **kwargs):
     completions = [completions[i][0]['content'] for i in range(len(completions))]
-    gold_dict = parse_generation(str(answer[0]))
+    gold_dicts = [parse_generation(str(a)) for a in answer]
     predicted_dicts = [parse_generation(c) for c in completions]
-
-    gold_first_pass = split_words_and_letters(gold_dict["first_pass"].split(" "))
+    gold_first_passes = [split_words_and_letters(d["first_pass"].split(" ")) for d in gold_dicts]
+    pred_first_passes = [split_words_and_letters(d["first_pass"].split(" ")) for d in predicted_dicts]
     
     scores = []
-
-    for pred in predicted_dicts:
+    for gold, pred, gold_fp, pred_fp in zip(gold_dicts, predicted_dicts, gold_first_passes, pred_first_passes):
         if pred['first_pass'] == '' or len(pred['first_pass']) == 0:
             scores.append(-10)
             continue
-
         pred_word_guesses = pred["word_guesses"].lower().split(";")
-        pred_first_pass = split_words_and_letters(pred["first_pass"].split(" "))
-
         cfp_score = 0
 
-        for pw, pfp, gfp in zip(pred_word_guesses, pred_first_pass["words"], gold_first_pass["words"]):
+        for pw, pfp, gfp in zip(pred_word_guesses, pred_fp["words"], gold_fp["words"]):
             if pw == pfp == gfp:
                 cfp_score += 1
             elif pw != pfp and pfp == gfp:
                 cfp_score += 0.1
             else:
                 cfp_score -= 2
-        
         scores.append(cfp_score)
     print("first pass: ", scores)
     return scores
 
 def check_solution_words(prompts, completions, answer, **kwargs):
     completions = [completions[i][0]['content'] for i in range(len(completions))]
-    gold_dict = parse_generation(str(answer[0]))
+    gold_dicts = [parse_generation(str(a)) for a in answer]
     predicted_dicts = [parse_generation(c) for c in completions]
-    gold_solution_words = gold_dict["solution_words"].lower().split(";")
+    gold_solution_words = [gold["solution_words"].lower().split(";") for gold in gold_dicts]
+    pred_solution_words = [pred["solution_words"].lower().split(";") for pred in predicted_dicts]
 
     scores = []
 
-    for pred in predicted_dicts:
-        pred_solution_words = pred["solution_words"].lower().split(";")
-        
+    for gold_sw, pred_sw in zip(gold_solution_words, pred_solution_words):        
         score = 0
 
-        if len(pred_solution_words) == 0:
+        if len(pred_sw) == 0:
             scores.append(-10)
             continue
 
-        if len(gold_solution_words) == len(pred_solution_words):
+        if len(gold_sw) == len(pred_sw):
             score += 1
         else:
-            score -= 3 * int(np.abs(len(gold_solution_words) - len(pred_solution_words)))
+            score -= 3 * int(np.abs(len(gold_sw) - len(pred_sw)))
         
-        for pw, gw in zip(pred_solution_words, gold_solution_words):
+        for pw, gw in zip(pred_sw, gold_sw):
             if pw == gw:
                 score += 1
             elif len(pw) == len(gw):
@@ -143,21 +134,21 @@ def check_solution_words(prompts, completions, answer, **kwargs):
 
 def check_solution(prompts, completions, answer, **kwargs):
     completions = [completions[i][0]['content'] for i in range(len(completions))]
-    gold_dict = parse_generation(str(answer[0]))
+    gold_dicts = [parse_generation(str(a)) for a in answer]
     predicted_dicts = [parse_generation(c) for c in completions]
-    gold_solution = gold_dict["solution"].lower()
+    gold_solutions = [d["solution"].lower() for d in gold_dicts]
+    pred_solutions = [d["solution"].lower() for d in predicted_dicts]
 
     scores = []
 
-    for pred in predicted_dicts:
+    for gs, ps in zip(gold_solutions, pred_solutions):
         score = 0
-        pred_solution = pred["solution"].lower()
 
-        if pred_solution=='':
+        if ps=='':
            scores.append(-10)
            continue
 
-        if pred_solution == gold_solution:
+        if ps == gs:
             score += 10
         else:
             score -= 5
