@@ -1,15 +1,15 @@
 """
-2025.5.11
-2025.5.9
-4.52.4
-0.18.1
+2025.6.1
+2025.6.1
+4.51.3
+0.15.2
 __UNSLOTH_VERSIONING__
 """
 from torch import Tensor
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
-from trl.trainer.nash_md_trainer import (Any, BaseImageProcessor, BasePairwiseJudge, Callable, Dataset, EvalPrediction, F, FeatureExtractionMixin, GeometricMixtureWrapper, IterableDataset, NashMDConfig, NashMDTrainer, OnlineDPOTrainer, OptimizerNames, Optional, PeftModel, PreTrainedModel, PreTrainedTokenizerBase, ProcessorMixin, SIMPLE_CHAT_TEMPLATE, TrainerCallback, Union, empty_cache, generate_model_card, get_comet_experiment_url, get_reward, is_conversational, is_peft_available, is_wandb_available, jinja2, maybe_apply_chat_template, nn, os, textwrap, torch, truncate_right, unwrap_model_for_generation, wandb)
+from trl.trainer.nash_md_trainer import (Any, BaseImageProcessor, BasePairwiseJudge, Callable, Dataset, EvalPrediction, F, FeatureExtractionMixin, GeometricMixtureWrapper, IterableDataset, NashMDConfig, NashMDTrainer, OnlineDPOTrainer, OptimizerNames, Optional, PreTrainedModel, PreTrainedTokenizerBase, ProcessorMixin, SIMPLE_CHAT_TEMPLATE, TrainerCallback, Union, empty_cache, generate_model_card, get_comet_experiment_url, get_reward, is_conversational, is_wandb_available, jinja2, maybe_apply_chat_template, nn, os, textwrap, torch, truncate_right, unwrap_model_for_generation, wandb)
 
 
 import os
@@ -140,6 +140,7 @@ class UnslothNashMDConfig(NashMDConfig):
         fsdp = '',
         fsdp_min_num_params = 0,
         fsdp_config = None,
+        tp_size = 0,
         fsdp_transformer_layer_cls_to_wrap = None,
         accelerator_config = None,
         deepspeed = None,
@@ -200,7 +201,6 @@ class UnslothNashMDConfig(NashMDConfig):
         dataset_num_proc = None,
         disable_dropout = True,
         use_vllm = False,
-        gpu_memory_utilization = 0.55,
         ds3_gather_for_generation = True,
         vllm_sampling_params = None,
         unsloth_num_chunks = -1,
@@ -292,6 +292,7 @@ class UnslothNashMDConfig(NashMDConfig):
             fsdp = fsdp,
             fsdp_min_num_params = fsdp_min_num_params,
             fsdp_config = fsdp_config,
+            tp_size = tp_size,
             fsdp_transformer_layer_cls_to_wrap = fsdp_transformer_layer_cls_to_wrap,
             accelerator_config = accelerator_config,
             deepspeed = deepspeed,
@@ -352,7 +353,6 @@ class UnslothNashMDConfig(NashMDConfig):
             dataset_num_proc = dataset_num_proc,
             disable_dropout = disable_dropout,
             use_vllm = use_vllm,
-            gpu_memory_utilization = gpu_memory_utilization,
             ds3_gather_for_generation = ds3_gather_for_generation,**kwargs)
         self.vllm_sampling_params = vllm_sampling_params
         self.unsloth_num_chunks = unsloth_num_chunks
@@ -432,50 +432,28 @@ class _UnslothNashMDTrainer(OnlineDPOTrainer):
             return self._mixture_coef
 
     def _generate_completions(self, model, prompts):
-        # Generate completions from the policy model.
-        with unwrap_model_for_generation(model, self.accelerator) as unwrapped_policy_for_gen_ctx:
-            model_output = unwrapped_policy_for_gen_ctx.generate(
+        with unwrap_model_for_generation(model, self.accelerator) as unwrapped_model:
+            model_output = unwrapped_model.generate(
                 input_ids=prompts["input_ids"],
                 attention_mask=prompts["attention_mask"],
                 generation_config=self.generation_config,
             )
 
-        # Get the DDP/FSDP unwrapped version of the main model.
-        # This will be the policy model for GeometricMixtureWrapper (PEFT adapters active if PEFT is used).
-        policy_model_for_gmw = self.accelerator.unwrap_model(model)
+            ref_model = model if self.ref_model is None else self.ref_model
+            with torch.no_grad(), unwrap_model_for_generation(ref_model, self.accelerator) as unwrapped_ref_model:
+                mixture_model = GeometricMixtureWrapper(
+                    model=unwrapped_model,
+                    ref_model=unwrapped_ref_model,
+                    generation_config=self.generation_config,
+                    mixture_coef=self.mixture_coef,
+                    device=self.accelerator.device,
+                )
 
-        # Determine the correct reference model for GeometricMixtureWrapper.
-        # This also needs to be DDP/FSDP unwrapped.
-        ref_model_for_gmw: torch.nn.Module
-        if self.ref_model is None:
-            # No explicit ref_model is provided.
-            # Use the base of the main `model` if it's a PEFT model.
-            # policy_model_for_gmw is already DDP-unwrapped.
-            if is_peft_available() and isinstance(policy_model_for_gmw, PeftModel):
-                ref_model_for_gmw = policy_model_for_gmw.get_base_model()
-            else:
-                # Not a PEFT model (or PEFT not available), or already a base model.
-                # Use the DDP-unwrapped policy model itself as the reference.
-                ref_model_for_gmw = policy_model_for_gmw
-        else:
-            # An explicit ref_model is provided. Unwrap it for DDP/FSDP.
-            ref_model_for_gmw = self.accelerator.unwrap_model(self.ref_model)
-
-        # Both models given to GeometricMixtureWrapper (policy_model_for_gmw and ref_model_for_gmw) are DDP-unwrapped.
-        with torch.no_grad():  # Ensure no_grad context for mixture model generation
-            mixture_model = GeometricMixtureWrapper(
-                model=policy_model_for_gmw,
-                ref_model=ref_model_for_gmw,
-                generation_config=self.generation_config,
-                mixture_coef=self.mixture_coef,
-                device=self.accelerator.device,
-            )
-
-            mixture_output = mixture_model.generate(
-                input_ids=prompts["input_ids"],
-                attention_mask=prompts["attention_mask"],
-                generation_config=self.generation_config,
-            )
+                mixture_output = mixture_model.generate(
+                    input_ids=prompts["input_ids"],
+                    attention_mask=prompts["attention_mask"],
+                    generation_config=self.generation_config,
+                )
 
         return model_output, mixture_output
 

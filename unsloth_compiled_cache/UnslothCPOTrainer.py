@@ -1,8 +1,8 @@
 """
-2025.5.11
-2025.5.9
-4.52.4
-0.18.1
+2025.6.1
+2025.6.1
+4.51.3
+0.15.2
 __UNSLOTH_VERSIONING__
 """
 from torch import Tensor
@@ -186,6 +186,7 @@ class UnslothCPOConfig(CPOConfig):
         fsdp = '',
         fsdp_min_num_params = 0,
         fsdp_config = None,
+        tp_size = 0,
         fsdp_transformer_layer_cls_to_wrap = None,
         accelerator_config = None,
         deepspeed = None,
@@ -342,6 +343,7 @@ class UnslothCPOConfig(CPOConfig):
             fsdp = fsdp,
             fsdp_min_num_params = fsdp_min_num_params,
             fsdp_config = fsdp_config,
+            tp_size = tp_size,
             fsdp_transformer_layer_cls_to_wrap = fsdp_transformer_layer_cls_to_wrap,
             accelerator_config = accelerator_config,
             deepspeed = deepspeed,
@@ -550,11 +552,6 @@ class _UnslothCPOTrainer(Trainer):
         else:
             max_prompt_length = args.max_prompt_length
 
-        if not max_prompt_length < max_length:
-            raise ValueError(
-                f"max_prompt_length ({max_prompt_length}) should be strictly less than max_length ({max_length})."
-            )
-
         if args.max_completion_length is None and self.is_encoder_decoder:
             warnings.warn(
                 "When using an encoder decoder architecture, you should set `max_completion_length` in the CPOConfig's init"
@@ -638,7 +635,7 @@ class _UnslothCPOTrainer(Trainer):
 
         # Compute that only on the main process for faster data processing.
         # see: https://github.com/huggingface/trl/pull/1255
-        with PartialState().main_process_first():
+        with PartialState().local_main_process_first():
             # Extract the prompt if needed, and apply the chat template if needed
             train_dataset = train_dataset.map(maybe_extract_prompt, num_proc=args.dataset_num_proc)
             train_dataset = train_dataset.map(
@@ -1149,10 +1146,10 @@ class _UnslothCPOTrainer(Trainer):
             self.accelerator.gather_for_metrics(policy_chosen_logps).detach().mean().item()
         )
         metrics[f"{prefix}logits/rejected"] = (
-            self.accelerator.gather_for_metrics(policy_rejected_logits.detach().mean()).mean().item()
+            self.accelerator.gather_for_metrics(policy_rejected_logits).detach().mean().item()
         )
         metrics[f"{prefix}logits/chosen"] = (
-            self.accelerator.gather_for_metrics(policy_chosen_logits.detach().mean()).mean().item()
+            self.accelerator.gather_for_metrics(policy_chosen_logits).detach().mean().item()
         )
         metrics[f"{prefix}nll_loss"] = self.accelerator.gather_for_metrics(policy_nll_loss).detach().mean().item()
 
@@ -1230,8 +1227,8 @@ class _UnslothCPOTrainer(Trainer):
             "eval_logits/chosen": metrics["eval_logits/chosen"],
             "eval_logits/rejected": metrics["eval_logits/rejected"],
         }
-        logits = [v for k, v in logits_dict.items() if k not in ignore_keys]
-        logits = torch.tensor(logits, device=self.accelerator.device)
+        logits = tuple(v.unsqueeze(dim=0) for k, v in logits_dict.items() if k not in ignore_keys)
+        logits = torch.stack(logits).mean(axis=1).to(self.accelerator.device)
         labels = torch.zeros(logits.shape[0], device=self.accelerator.device)
 
         return (loss.detach(), logits, labels)

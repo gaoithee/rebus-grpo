@@ -1,8 +1,8 @@
 """
-2025.5.11
-2025.5.9
-4.52.4
-0.18.1
+2025.6.1
+2025.6.1
+4.51.3
+0.15.2
 __UNSLOTH_VERSIONING__
 """
 from torch import Tensor
@@ -91,8 +91,6 @@ class UnslothOnlineDPOConfig(OnlineDPOConfig):
             Whether to disable dropout in the model and reference model.
         use_vllm (`bool`, *optional*, defaults to `False`):
             Whether to use vLLM for generating completions. Requires vLLM to be installed (`pip install vllm`).
-        gpu_memory_utilization (`float`, *optional*, defaults to `0.55`):
-            The vLLM memory utilization. The default value is 0.55.
         ds3_gather_for_generation (`bool`, *optional*, defaults to `True`):
             This setting applies to DeepSpeed ZeRO-3. If enabled, the policy model weights are gathered for generation,
             improving generation speed. However, disabling this option allows training models that exceed the VRAM
@@ -185,6 +183,7 @@ class UnslothOnlineDPOConfig(OnlineDPOConfig):
         fsdp = '',
         fsdp_min_num_params = 0,
         fsdp_config = None,
+        tp_size = 0,
         fsdp_transformer_layer_cls_to_wrap = None,
         accelerator_config = None,
         deepspeed = None,
@@ -245,7 +244,6 @@ class UnslothOnlineDPOConfig(OnlineDPOConfig):
         dataset_num_proc = None,
         disable_dropout = True,
         use_vllm = False,
-        gpu_memory_utilization = 0.55,
         ds3_gather_for_generation = True,
         vllm_sampling_params = None,
         unsloth_num_chunks = -1,
@@ -337,6 +335,7 @@ class UnslothOnlineDPOConfig(OnlineDPOConfig):
             fsdp = fsdp,
             fsdp_min_num_params = fsdp_min_num_params,
             fsdp_config = fsdp_config,
+            tp_size = tp_size,
             fsdp_transformer_layer_cls_to_wrap = fsdp_transformer_layer_cls_to_wrap,
             accelerator_config = accelerator_config,
             deepspeed = deepspeed,
@@ -397,7 +396,6 @@ class UnslothOnlineDPOConfig(OnlineDPOConfig):
             dataset_num_proc = dataset_num_proc,
             disable_dropout = disable_dropout,
             use_vllm = use_vllm,
-            gpu_memory_utilization = gpu_memory_utilization,
             ds3_gather_for_generation = ds3_gather_for_generation,**kwargs)
         self.vllm_sampling_params = vllm_sampling_params
         self.unsloth_num_chunks = unsloth_num_chunks
@@ -453,7 +451,6 @@ class _UnslothOnlineDPOTrainer(Trainer):
         self.reward_model = reward_model
         self.reward_processing_class = reward_processing_class
         self.judge = judge
-        self.is_encoder_decoder = model.config.is_encoder_decoder
 
         if args.missing_eos_penalty is not None and judge is not None:
             raise ValueError("`missing_eos_penalty` is not supported when `judge` is provided.")
@@ -735,7 +732,7 @@ class _UnslothOnlineDPOTrainer(Trainer):
         # policies with different tokenizers / chat templates.
         inputs = [{"prompt": prompt} for prompt in prompts]
         inputs = [maybe_apply_chat_template(x, self.processing_class) for x in inputs]
-        inputs = [self.tokenize_row(x, self.is_encoder_decoder, self.processing_class) for x in inputs]
+        inputs = [self.tokenize_row(x, model.config.is_encoder_decoder, self.processing_class) for x in inputs]
         inputs = self.data_collator(inputs)
 
         # Sample 2 completions per prompt of size `max_new_tokens` from the model
@@ -960,9 +957,7 @@ class _UnslothOnlineDPOTrainer(Trainer):
 
     # Same as Trainer._maybe_log_save_evaluate but log our metrics
     # start_time defaults to None to allow compatibility with transformers<=4.46
-    def _maybe_log_save_evaluate(
-        self, tr_loss, grad_norm, model, trial, epoch, ignore_keys_for_eval, start_time=None, learning_rate=None
-    ):
+    def _maybe_log_save_evaluate(self, tr_loss, grad_norm, model, trial, epoch, ignore_keys_for_eval, start_time=None):
         if self.control.should_log and self.state.global_step > self._globalstep_last_logged:
             logs: dict[str, float] = {}
 
@@ -975,10 +970,7 @@ class _UnslothOnlineDPOTrainer(Trainer):
             logs["loss"] = round(tr_loss_scalar / (self.state.global_step - self._globalstep_last_logged), 4)
             if grad_norm is not None:
                 logs["grad_norm"] = grad_norm.detach().item() if isinstance(grad_norm, torch.Tensor) else grad_norm
-            if learning_rate is not None:
-                logs["learning_rate"] = learning_rate
-            else:
-                logs["learning_rate"] = self._get_learning_rate()
+            logs["learning_rate"] = self._get_learning_rate()
 
             # Add our metrics
             for key, val in self.stats.items():

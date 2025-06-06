@@ -1,15 +1,15 @@
 """
-2025.5.11
-2025.5.9
-4.52.4
-0.18.1
+2025.6.1
+2025.6.1
+4.51.3
+0.15.2
 __UNSLOTH_VERSIONING__
 """
 from torch import Tensor
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
-from trl.trainer.reward_trainer import (Any, BaseImageProcessor, Callable, DataCollator, Dataset, EvalPrediction, FeatureExtractionMixin, FrozenInstanceError, Optional, PartialState, PeftModel, PreTrainedModel, PreTrainedTokenizerBase, ProcessorMixin, RewardConfig, RewardDataCollatorWithPadding, RewardTrainer, Trainer, TrainerCallback, Union, _tokenize, compute_accuracy, decode_and_strip_padding, defaultdict, disable_dropout_in_model, gather_object, generate_model_card, get_comet_experiment_url, inspect, is_peft_available, is_rich_available, is_wandb_available, log_table_to_comet_experiment, maybe_apply_chat_template, nested_detach, nn, os, pd, prepare_model_for_kbit_training, print_rich_table, replace, torch, wandb, warnings)
+from trl.trainer.reward_trainer import (Any, BaseImageProcessor, Callable, DataCollator, Dataset, EvalPrediction, FeatureExtractionMixin, FrozenInstanceError, Optional, PartialState, PeftModel, PreTrainedModel, PreTrainedTokenizerBase, ProcessorMixin, RewardConfig, RewardDataCollatorWithPadding, RewardTrainer, Trainer, TrainerCallback, Union, _tokenize, compute_accuracy, decode_and_strip_padding, defaultdict, disable_dropout_in_model, gather_object, generate_model_card, get_comet_experiment_url, inspect, is_peft_available, is_wandb_available, log_table_to_comet_experiment, maybe_apply_chat_template, nested_detach, nn, os, pd, prepare_model_for_kbit_training, print_rich_table, replace, torch, wandb, warnings)
 
 
 import os
@@ -151,6 +151,7 @@ class UnslothRewardConfig(RewardConfig):
         fsdp = '',
         fsdp_min_num_params = 0,
         fsdp_config = None,
+        tp_size = 0,
         fsdp_transformer_layer_cls_to_wrap = None,
         accelerator_config = None,
         deepspeed = None,
@@ -295,6 +296,7 @@ class UnslothRewardConfig(RewardConfig):
             fsdp = fsdp,
             fsdp_min_num_params = fsdp_min_num_params,
             fsdp_config = fsdp_config,
+            tp_size = tp_size,
             fsdp_transformer_layer_cls_to_wrap = fsdp_transformer_layer_cls_to_wrap,
             accelerator_config = accelerator_config,
             deepspeed = deepspeed,
@@ -477,7 +479,7 @@ class _UnslothRewardTrainer(Trainer):
         model.warnings_issued["estimate_tokens"] = True
 
         if "input_ids_chosen" not in train_dataset.column_names:
-            with PartialState().main_process_first():
+            with PartialState().local_main_process_first():
                 fn_kwargs = {"tokenizer": processing_class}
                 train_dataset = train_dataset.map(maybe_apply_chat_template, fn_kwargs={"tokenizer": processing_class})
                 train_dataset = train_dataset.map(
@@ -623,8 +625,7 @@ class _UnslothRewardTrainer(Trainer):
                 break
         df = pd.DataFrame(table)
         if self.accelerator.process_index == 0:
-            if is_rich_available():
-                print_rich_table(df[:num_print_samples])
+            print_rich_table(df[:num_print_samples])
             if "wandb" in self.args.report_to:
                 import wandb
 

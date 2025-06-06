@@ -1,8 +1,8 @@
 """
-2025.5.11
-2025.5.9
-4.52.4
-0.18.1
+2025.6.1
+2025.6.1
+4.51.3
+0.15.2
 __UNSLOTH_VERSIONING__
 """
 from torch import Tensor
@@ -145,7 +145,7 @@ class UnslothDDPOConfig(DDPOConfig):
     )
     def __init__(
         self,
-        exp_name = 'grpo-llama',
+        exp_name = 'grpo-phi',
         run_name = '',
         seed = 3407,
         log_with = None,
