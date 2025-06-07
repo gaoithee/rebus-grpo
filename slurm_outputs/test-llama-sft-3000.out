@@ -1,7 +1,0 @@
----------------------------------------------
-SLURM job ID:        15702
-SLURM job node list: babbage
-DATE:                Wed Jun  4 08:14:40 AM CEST 2025
----------------------------------------------
-/var/spool/slurm/slurmd/job15702/slurm_script: line 21: accelerate: command not found
-DONE!

@@ -1,50 +1,0 @@
----------------------------------------------
-SLURM job ID:        15652
-SLURM job node list: lovelace-01
-DATE:                Tue Jun  3 08:17:06 PM CEST 2025
----------------------------------------------
-no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/condabin/conda
-no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/conda
-no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/conda-env
-no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/activate
-no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/bin/deactivate
-no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/etc/profile.d/conda.sh
-no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/etc/fish/conf.d/conda.fish
-no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/shell/condabin/Conda.psm1
-no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/shell/condabin/conda-hook.ps1
-no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/lib/python3.10/site-packages/xontrib/conda.xsh
-no change     /opt/spack/opt/spack/linux-rocky9-x86_64/gcc-13.2.0/miniconda3-22.11.1-tn534fvb4uy4wrf7m2zcwpiycdzlebd6/etc/profile.d/conda.csh
-no change     /u/scandussio/.bashrc
-No action taken.
-The following values were not passed to `accelerate launch` and had defaults used instead:
-	`--num_processes` was set to a value of `1`
-	`--num_machines` was set to a value of `1`
-	`--mixed_precision` was set to a value of `'no'`
-	`--dynamo_backend` was set to a value of `'no'`
-To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
-🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
-🦥 Unsloth Zoo will now patch everything to make training faster!
-INFO 06-03 20:17:27 __init__.py:190] Automatically detected platform cuda.
-wandb: Appending key for api.wandb.ai to your netrc file: /u/scandussio/.netrc
-wandb: Currently logged in as: saracandussio (saracandussio-universit-degli-studi-di-trieste) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
-Unsloth 2025.5.6 patched 32 layers with 32 QKV layers, 32 O layers and 32 MLP layers.
-wandb: Tracking run with wandb version 0.19.11
-wandb: Run data is saved locally in /share/ai-lab/scandussio/rebus-grpo/wandb/run-20250603_201742-3f7mkcq4
-wandb: Run `wandb offline` to turn off syncing.
-wandb: Syncing run absurd-dew-1
-wandb: ⭐️ View project at https://wandb.ai/saracandussio-universit-degli-studi-di-trieste/phi-GRPO-3000
-wandb: 🚀 View run at https://wandb.ai/saracandussio-universit-degli-studi-di-trieste/phi-GRPO-3000/runs/3f7mkcq4
-==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
-   \\   /|    Num examples = 13,500 | Num Epochs = 1 | Total steps = 300
-O^O/ \_/ \    Batch size per device = 12 | Gradient accumulation steps = 6
-\        /    Data Parallel GPUs = 1 | Total batch size (12 x 6 x 1) = 72
- "-____-"     Trainable parameters = 29,884,416/4,000,000,000 (0.75% trained)
-wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
-==((====))==  Unsloth 2025.5.6: Fast Mistral patching. Transformers: 4.51.3. vLLM: 0.7.2.
-   \\   /|    NVIDIA A100 80GB PCIe MIG 1g.20gb. Num GPUs = 1. Max memory: 19.5 GB. Platform: Linux.
-O^O/ \_/ \    Torch: 2.5.1+cu124. CUDA: 8.0. CUDA Toolkit: 12.4. Triton: 3.1.0
-\        /    Bfloat16 = TRUE. FA [Xformers = 0.0.28.post3. FA2 = False]
- "-____-"     Free license: http://github.com/unslothai/unsloth
-Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
-Training begins...
-  0%|          | 0/300 [00:00<?, ?it/s]  0%|          | 1/300 [11:28<57:10:00, 688.30s/it]  1%|          | 2/300 [22:49<56:39:05, 684.38s/it]  1%|          | 3/300 [34:09<56:15:49, 681.99s/it]  1%|▏         | 4/300 [45:28<55:59:20, 680.95s/it]  2%|▏         | 5/300 [56:46<55:43:34, 680.05s/it]  2%|▏         | 6/300 [1:08:06<55:32:14, 680.05s/it]  2%|▏         | 7/300 [1:19:25<55:18:26, 679.54s/it]  3%|▎         | 8/300 [1:30:45<55:07:30, 679.63s/it]  3%|▎         | 9/300 [1:42:03<54:54:09, 679.21s/it]  3%|▎         | 10/300 [1:53:24<54:45:36, 679.78s/it]  4%|▎         | 11/300 [2:04:44<54:35:02, 679.94s/it]  4%|▍         | 12/300 [2:16:06<54:25:35, 680.33s/it]  4%|▍         | 13/300 [2:27:26<54:14:37, 680.41s/it]  5%|▍         | 14/300 [2:38:47<54:04:06, 680.58s/it]  5%|▌         | 15/300 [2:50:09<53:53:49, 680.80s/it]  5%|▌         | 16/300 [3:01:32<53:46:17, 681.61s/it]  6%|▌         | 17/300 [3:12:54<53:35:20, 681.70s/it]  6%|▌         | 18/300 [3:24:17<53:26:00, 682.13s/it]  6%|▋         | 19/300 [3:35:36<53:10:43, 681.29s/it]  7%|▋         | 20/300 [3:46:57<52:58:09, 681.03s/it]  7%|▋         | 21/300 [3:58:20<52:49:47, 681.68s/it]  7%|▋         | 22/300 [4:09:41<52:37:34, 681.49s/it]  8%|▊         | 23/300 [4:21:01<52:24:23, 681.10s/it]  8%|▊         | 24/300 [4:32:22<52:12:57, 681.08s/it]  8%|▊         | 25/300 [4:43:43<52:01:36, 681.08s/it]  9%|▊         | 26/300 [4:55:03<51:48:15, 680.64s/it]  9%|▉         | 27/300 [5:06:25<51:38:16, 680.94s/it]  9%|▉         | 28/300 [5:17:44<51:24:54, 680.50s/it] 10%|▉         | 29/300 [5:29:05<51:14:15, 680.65s/it] 10%|█         | 30/300 [5:40:30<51:08:08, 681.81s/it] 10%|█         | 31/300 [5:51:54<50:59:54, 682.51s/it] 11%|█         | 32/300 [6:03:17<50:50:09, 682.87s/it] 11%|█         | 33/300 [6:14:39<50:37:29, 682.58s/it] 11%|█▏        | 34/300 [6:26:01<50:25:06, 682.36s/it] 12%|█▏        | 35/300 [6:37:24<50:14:13, 682.47s/it] 12%|█▏        | 36/300 [6:48:48<50:04:57, 682.95s/it] 12%|█▏        | 37/300 [7:00:10<49:52:33, 682.71s/it] 13%|█▎        | 38/300 [7:11:33<49:41:11, 682.71s/it] 13%|█▎        | 39/300 [7:22:53<49:27:04, 682.08s/it] 13%|█▎        | 40/300 [7:34:17<49:17:46, 682.56s/it] 14%|█▎        | 41/300 [7:45:39<49:06:07, 682.50s/it] 14%|█▍        | 42/300 [7:57:01<48:53:21, 682.18s/it] 14%|█▍        | 43/300 [8:08:21<48:39:24, 681.57s/it] 15%|█▍        | 44/300 [8:19:44<48:29:51, 682.00s/it] 15%|█▌        | 45/300 [8:31:05<48:17:14, 681.70s/it] 15%|█▌        | 46/300 [8:42:24<48:02:52, 680.99s/it] 16%|█▌        | 47/300 [8:53:44<47:50:02, 680.64s/it] 16%|█▌        | 48/300 [9:05:04<47:37:29, 680.36s/it] 16%|█▋        | 49/300 [9:16:26<47:28:50, 681.00s/it] 17%|█▋        | 50/300 [9:27:47<47:16:46, 680.83s/it]                                                       17%|█▋        | 50/300 [9:27:47<47:16:46, 680.83s/it] 17%|█▋        | 51/300 [9:39:08<47:05:57, 680.95s/it] 17%|█▋        | 52/300 [9:50:30<46:55:39, 681.21s/it] 18%|█▊        | 53/300 [10:01:54<46:47:26, 681.97s/it] 18%|█▊        | 54/300 [10:13:18<46:38:26, 682.55s/it] 18%|█▊        | 55/300 [10:24:40<46:27:28, 682.65s/it] 19%|█▊        | 56/300 [10:36:03<46:16:07, 682.66s/it] 19%|█▉        | 57/300 [10:47:25<46:04:20, 682.55s/it] 19%|█▉        | 58/300 [10:58:49<45:53:40, 682.73s/it] 20%|█▉        | 59/300 [11:10:11<45:41:42, 682.58s/it] 20%|██        | 60/300 [11:21:33<45:29:42, 682.43s/it] 20%|██        | 61/300 [11:32:56<45:18:52, 682.56s/it] 21%|██        | 62/300 [11:44:19<45:08:25, 682.80s/it] 21%|██        | 63/300 [11:55:43<44:58:19, 683.12s/it] 21%|██▏       | 64/300 [12:07:07<44:47:59, 683.39s/it] 22%|██▏       | 65/300 [12:18:29<44:35:19, 683.06s/it] 22%|██▏       | 66/300 [12:29:51<44:22:38, 682.73s/it] 22%|██▏       | 67/300 [12:41:13<44:10:19, 682.49s/it] 23%|██▎       | 68/300 [12:52:37<44:00:15, 682.83s/it] 23%|██▎       | 69/300 [13:04:00<43:48:48, 682.81s/it] 23%|██▎       | 70/300 [13:15:22<43:37:18, 682.77s/it] 24%|██▎       | 71/300 [13:26:45<43:26:13, 682.85s/it] 24%|██▍       | 72/300 [13:38:06<43:12:40, 682.28s/it] 24%|██▍       | 73/300 [13:49:27<42:59:29, 681.80s/it] 25%|██▍       | 74/300 [14:00:49<42:48:55, 682.02s/it] 25%|██▌       | 75/300 [14:12:11<42:36:55, 681.85s/it] 25%|██▌       | 76/300 [14:23:32<42:24:41, 681.62s/it] 26%|██▌       | 77/300 [14:34:55<42:15:15, 682.13s/it] 26%|██▌       | 78/300 [14:46:18<42:04:07, 682.20s/it] 26%|██▋       | 79/300 [14:57:40<41:52:43, 682.19s/it] 27%|██▋       | 80/300 [15:09:04<41:43:17, 682.72s/it] 27%|██▋       | 81/300 [15:20:27<41:32:30, 682.88s/it] 27%|██▋       | 82/300 [15:31:48<41:18:45, 682.23s/it] 28%|██▊       | 83/300 [15:43:09<41:06:32, 681.99s/it] 28%|██▊       | 84/300 [15:54:30<40:54:02, 681.68s/it] 28%|██▊       | 85/300 [16:05:52<40:42:40, 681.68s/it] 29%|██▊       | 86/300 [16:17:16<40:33:45, 682.36s/it] 29%|██▉       | 87/300 [16:28:38<40:21:53, 682.22s/it]slurmstepd: error: *** JOB 15652 ON lovelace-01 CANCELLED AT 2025-06-04T12:49:39 ***

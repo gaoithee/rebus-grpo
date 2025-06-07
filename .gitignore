@@ -1,13 +1,1 @@
-saracandu/
-outputs/
-.ipynb_checkpoints/
-unsloth_compiled_cache/
-wandb/
-avoid/
-errors/
-GRPO-llama-coldstart/
-cold-start-llama/
-trained-models/
-GRPO-phi-2000/
-GRPO-llama-new/
-grpo_trainer_lora_model/
+old/

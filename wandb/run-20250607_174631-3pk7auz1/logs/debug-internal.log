@@ -1,0 +1,15 @@
+{"time":"2025-06-07T17:46:31.74025831+02:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/share/ai-lab/scandussio/rebus-grpo/wandb/run-20250607_174631-3pk7auz1/logs/debug-core.log"}
+{"time":"2025-06-07T17:46:32.147616694+02:00","level":"INFO","msg":"stream: created new stream","id":"3pk7auz1"}
+{"time":"2025-06-07T17:46:32.147659815+02:00","level":"INFO","msg":"stream: started","id":"3pk7auz1"}
+{"time":"2025-06-07T17:46:32.147718005+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"3pk7auz1"}
+{"time":"2025-06-07T17:46:32.147727994+02:00","level":"INFO","msg":"handler: started","stream_id":"3pk7auz1"}
+{"time":"2025-06-07T17:46:32.1477685+02:00","level":"INFO","msg":"sender: started","stream_id":"3pk7auz1"}
+{"time":"2025-06-07T17:46:32.429051334+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-07T17:49:33.982563238+02:00","level":"INFO","msg":"stream: closing","id":"3pk7auz1"}
+{"time":"2025-06-07T17:49:33.982587103+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-07T17:49:33.982817085+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-07T17:49:34.51571253+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-07T17:49:34.942375259+02:00","level":"INFO","msg":"handler: closed","stream_id":"3pk7auz1"}
+{"time":"2025-06-07T17:49:34.942412248+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"3pk7auz1"}
+{"time":"2025-06-07T17:49:34.942451081+02:00","level":"INFO","msg":"sender: closed","stream_id":"3pk7auz1"}
+{"time":"2025-06-07T17:49:34.943502669+02:00","level":"INFO","msg":"stream: closed","id":"3pk7auz1"}
