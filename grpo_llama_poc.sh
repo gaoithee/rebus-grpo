@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH --no-requeue
-#SBATCH --job-name="sft-l"
-#SBATCH --partition=lovelace
+#SBATCH --job-name="grpo"
+#SBATCH --partition=Main
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:1g.20gb
+#SBATCH --gres=gpu:a100:1
 #SBATCH --time=48:00:00
 #SBATCH --mem=40G
-#SBATCH --output=slurm_outputs/sft-llama-poc.out
+#SBATCH --output=slurm_outputs/llama-grpo.out
 #SBATCH --cpus-per-task=8
 
 # Standard preamble for debugging
@@ -20,8 +20,8 @@ echo "---------------------------------------------"
 source ~/.bashrc
 
 conda init bash
-conda activate rebus-env
-accelerate launch sft_llama_poc.py
+conda activate vllm_env
+accelerate launch grpo_llama_poc.py
 
 
 echo "DONE!"

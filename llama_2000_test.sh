@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH --no-requeue
-#SBATCH --job-name="sft-l"
+#SBATCH --job-name="2000-l"
 #SBATCH --partition=lovelace
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1g.20gb
 #SBATCH --time=48:00:00
-#SBATCH --mem=40G
-#SBATCH --output=slurm_outputs/sft-llama-poc.out
+#SBATCH --mem=500G
+#SBATCH --output=slurm_outputs/llama-2000.out
 #SBATCH --cpus-per-task=8
 
 # Standard preamble for debugging
@@ -21,7 +21,7 @@ source ~/.bashrc
 
 conda init bash
 conda activate rebus-env
-accelerate launch sft_llama_poc.py
+accelerate launch test-sft-llama.py
 
 
 echo "DONE!"
